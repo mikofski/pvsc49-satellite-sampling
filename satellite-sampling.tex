@@ -39,13 +39,7 @@ Investors require accurate predictions of PV system performance to quantify and 
 
 \section{Methods}
 \subsection{Locations}
-There are 7 SURFRAD stations \cite{Augustine2000} across the United States with 1 to 3 minute resolution. Fig.~\ref{fig:geojson-map} shows the SURFRAD site locations. We selected TMY2 \cite{Marion1995} and TMY3 \cite{Wilcox2012} sites within 120[km] from the SURFRAD site that did not have any significant monthly irradiance, temperature, or wind speed deviations from the other nearby datasets. The generic uncertainty for both TMY2 and TMY3 is 5-8\% at 95\% confidence. For each SURFRAD site the PSM3 was queried for the nearest location using pvlib python \cite{F.Holmgren2018}. Table~\ref{table:surfrad-tmy-location-summary} shows the station names, global coordinates, and metadata about each site. The error from the SURFRAD median in the last column will be discussed later in the results, Section~\ref{section:results}.
-
-\begin{figure*}[htbp]
-\centerline{\includegraphics[width=18cm]{geojson.png}}
-\caption{Map of SURFRAD sites and selected nearby TMY2 and TMY3 sites for comparison.}
-\label{fig:geojson-map}
-\end{figure*}
+There are 7 SURFRAD stations \cite{Augustine2000} across the United States with 1 to 3 minute resolution. Fig.~ shows the SURFRAD site locations. We selected TMY2 \cite{Marion1995} and TMY3 \cite{Wilcox2012} sites within 120[km] from the SURFRAD site that did not have any significant monthly irradiance, temperature, or wind speed deviations from the other nearby datasets. The generic uncertainty for both TMY2 and TMY3 is 5-8\% at 95\% confidence. For each SURFRAD site the PSM3 was queried for the nearest location using pvlib python \cite{F.Holmgren2018}. Table~\ref{table:surfrad-tmy-location-summary} shows the station names, global coordinates, and metadata about each site. The error from the SURFRAD median in the last column will be discussed later in the results, Section~\ref{section:results}.
 
 \begin{table*}[htbp]
 \caption{Summary of SURFRAD, NSRDB, and TMY Locations}
@@ -130,48 +124,24 @@ E_\text{annual }= \sum_\text{day=1}^\text{365}{E_\text{daily}} \label{eq:annual-
 \label{section:results}
 
 \subsection{Analysis}
-We plotted histograms of the annual predictions using SURFRAD data for each of the 7 sites in Fig.~\ref{fig:Bondville-IL}, Fig.~\ref{fig:Boulder-CO}, Fig.~\ref{fig:Desert-Rock-NV}, Fig.~\ref{fig:Fort-Peck-MT}, Fig.~\ref{fig:Goodwin-Creek-MS}, Fig.~\ref{fig:Penn-State-PA}, and Fig.~\ref{fig:Sioux-Falls-SD}. The top plot shows the daily capacity factors (\ref{eq:daily-capacity-factor}) and annual capacity factors overlaid in red (\ref{eq:annual-capacity-factor}), while the bottom plot shows the histogram of annual energy per module (\ref{eq:annual-energy}) with the median (P50) and 90\% chance of exceedance (P90) marked with dashed blue lines. Then we overlaid the predicted PSM3, TMY2, and TMY3 predictions and annotated the plot with their quantiles.
+We plotted histograms of the annual predictions using SURFRAD data for each of the 7 sites in. The top plot shows the daily capacity factors (\ref{eq:daily-capacity-factor}) and annual capacity factors overlaid in red (\ref{eq:annual-capacity-factor}), while the bottom plot shows the histogram of annual energy per module (\ref{eq:annual-energy}) with the median (P50) and 90\% chance of exceedance (P90) marked with dashed blue lines. Then we overlaid the predicted PSM3, TMY2, and TMY3 predictions and annotated the plot with their quantiles.
 
 \begin{figure}[htbp]
-\centerline{\includegraphics[width=9cm]{Bondville_IL.png}}
+\centerline{\includegraphics[width=9cm]{time-averaged.png}}
 \caption{Daily (blue) and annual (red) capacity factor relative to DC nameplate for Bondville, IL, SURFRAD site (top) and distribution of annual DC energy per module (bottom).}
-\label{fig:Bondville-IL}
+\label{fig:time-averaged}
 \end{figure}
 
 \begin{figure}[htbp]
-\centerline{\includegraphics[width=9cm]{Boulder_CO.png}}
+\centerline{\includegraphics[width=9cm]{instantaneous.png}}
 \caption{Daily (blue) and annual (red) capacity factor relative to DC nameplate for Boulder, CO, SURFRAD site (top) and distribution of annual DC energy per module (bottom).}
-\label{fig:Boulder-CO}
+\label{fig:instantaneous}
 \end{figure}
 
 \begin{figure}[htbp]
-\centerline{\includegraphics[width=9cm]{Desert_Rock_NV}}
+\centerline{\includegraphics[width=9cm]{satelite-simulated.png}}
 \caption{Daily (blue) and annual (red) capacity factor relative to DC nameplate for Desert Rock, NV, SURFRAD site (top) and distribution of annual DC energy per module (bottom).}
-\label{fig:Desert-Rock-NV}
-\end{figure}
-
-\begin{figure}[htbp]
-\centerline{\includegraphics[width=9cm]{Fort_Peck_MT.png}}
-\caption{Daily (blue) and annual (red) capacity factor relative to DC nameplate for Fort Peck, MT, SURFRAD site (top) and distribution of annual DC energy per module (bottom).}
-\label{fig:Fort-Peck-MT}
-\end{figure}
-
-\begin{figure}[htbp]
-\centerline{\includegraphics[width=9cm]{Goodwin_Creek_MS.png}}
-\caption{Daily (blue) and annual (red) capacity factor relative to DC nameplate for Goodwin Creek, MS, SURFRAD site (top) and distribution of annual DC energy per module (bottom).}
-\label{fig:Goodwin-Creek-MS}
-\end{figure}
-
-\begin{figure}[htbp]
-\centerline{\includegraphics[width=9cm]{Penn_State_PA.png}}
-\caption{Daily (blue) and annual (red) capacity factor relative to DC nameplate for Penn State, PA, SURFRAD site (top) and distribution of annual DC energy per module (bottom).}
-\label{fig:Penn-State-PA}
-\end{figure}
-
-\begin{figure}[htbp]
-\centerline{\includegraphics[width=9cm]{Sioux_Falls_SD.png}}
-\caption{Daily (blue) and annual (red) capacity factor relative to DC nameplate for Sioux Falls, SD, SURFRAD site (top) and distribution of annual DC energy per module (bottom).}
-\label{fig:Sioux-Falls-SD}
+\label{fig:satellite-simulated}
 \end{figure}
 
 Table~\ref{table:surfrad-tmy-errors-summary} shows the relative differences between the TMY annual prediction and the SURFRAD median (\ref{eq:tmy-surfrad-median-error}) so that positive errors mean the TMY overpredicted. Table~\ref{table:surfrad-tmy-summary} summarizes the results as annual capacity factors (\ref{eq:annual-capacity-factor}), and Table~\ref{table:surfrad-tmy-quantile-summary} summarizes the results as quantiles. Where more than one TMY3 was close to the SURFRAD station, the closest to the median is shown in the tables. The relative differences for all sites are shown in the last column of Table~\ref{table:surfrad-tmy-location-summary}.
@@ -246,7 +216,7 @@ Sioux Falls, SD  & 94.1\%& 14944&  70.6\%&726510&  58.8\% \\
 \subsection{Discussion}
 It's difficult to spot any trends in the 20 or more years of data at each of the SURFRAD sites, compared to trends seen in other studies \cite{Muller2014}. Although there are some biases detected between the SURFRAD data and the oldest data set, TMY2 1960-1990 \cite{Marion1995}, the average difference from Table~\ref{table:surfrad-tmy-errors-summary}, 2.4\%, is on the same order as the standard deviation between the sites, 3.1\%, and is therefore inconclusive. The newer data set, TMY3 1990-2010 \cite{Wilcox2012}, seems closer to the SURFRAD data, 0\% average difference, but the standard deviation between sites, 2.8\%, is similar to the spread for the TMY2, so they appear to overlap and are not clearly distinguishable. The newest data surprisingly is an outlier with an average difference twice as big as for TMY2, 6.5\%, and a spread on the same order as TMY2 and TMY3, 4.2\%, so there's a clear distinction between it and the other datasets. More investigation is necessary to understand the difference.
 
-The distribution of years differs between SURFRAD sites, perhaps due to climate differences. Bondville, IL, Fig.~\ref{fig:Bondville-IL} and Sioux Falls, SD, Fig.~\ref{fig:Sioux-Falls-SD} seem to be the most normal and symmetrical with ranges of about 10\%, but not all of the histograms show a normal distribution, some are flatter, many skewed, and some possibly multimodal. The range varies from site to site, between 5-10\%. Fort Peck, MT, Fig.~\ref{fig:Fort-Peck-MT} has the closest range between 510-560[kWh/yr] per module. Desert Rock, NV, Fig.~\ref{fig:Desert-Rock-NV} also has a tight range and the highest output of all the sites, but also has a long downside tail. The year 2002 is an outlier at this site and is about 50[kWh/yr] per module lower than the other years. Goodwin Creek, MS, Fig~\ref{fig:Goodwin-Creek-MS} also has a long downside tail and apparently no upside or a double peak. The years 2004 and 2014 are outliers in this data set deviating by nearly 20-25\% from previous and later years.
+The distribution of years differs between SURFRAD sites, perhaps due to climate differences. Bondville, IL, Fig.~\ref{fig:time-averaged} and Sioux Falls, SD, Fig.~\ref{fig:instantaneous} seem to be the most normal and symmetrical with ranges of about 10\%, but not all of the histograms show a normal distribution, some are flatter, many skewed, and some possibly multimodal. The range varies from site to site, between 5-10\%. Fort Peck, MT, has the closest range between 510-560[kWh/yr] per module. Desert Rock, NV, Fig.~\ref{fig:satellite-simulated} also has a tight range and the highest output of all the sites, but also has a long downside tail. The year 2002 is an outlier at this site and is about 50[kWh/yr] per module lower than the other years. Goodwin Creek, MS, also has a long downside tail and apparently no upside or a double peak. The years 2004 and 2014 are outliers in this data set deviating by nearly 20-25\% from previous and later years.
 
 These SURFRAD sites do not cover all of the climates and regions in the US consistently. Most of the sites are in the interior, and there is a high concentration in the midwest. The average annual DC capacity factor is about 20\% with Desert Rock, NV, the exception at 28\%. There are no SURFRAD sites in the northwest, along the Pacific Coast, along the Gulf of Mexico, the Atlantic coast, or in the southeast, and there is only one site in the southwest, where there may be a high concentration of PV systems. For example Arizona or New Mexico. Therefore, the results of this study are limited and should not be extrapolated or applied uniformly to the entire United States.
 
