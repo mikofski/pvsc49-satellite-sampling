@@ -18,7 +18,7 @@
 % balance columns on lastpage
 % better than \flushend according to
 % https://texfaq.org/FAQ-balance
-\usepackage{flushend}
+%\usepackage{flushend}
 
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
@@ -43,6 +43,7 @@ inverter, clipping, satellite, sampling, solar resource, irradiance, variability
 Accurate solar energy assessments are important for lowering the cost of capital for PV systems. However, continuing under-performance of solar assets over the past few years may be damaging investor confidence \cite{Matsui2021}. Several studies have examined potential sources of under-prediction, and subhourly modeling errors has recently received renewed interest \cite{Parikh2021,Anderson2020,Bradford2020,Kharait2020,Cormode2019}. Subhourly modeling errors arise from differences in predicted clipping losses and energy output between using hourly versus subhourly input. When hourly input is time-averaged from high-frequency subhourly measurements, energy output is over-predicted and clipping losses are under-predicted. However, satellite data is generated from low-frequency measurements that are sampled at 15-minute or 30-minute intervals \cite{Wilcox2012,Sengupta2018}. Recently, a few studies have investigated the difference between hourly input time-averaged from high-frequency versus input generated from low-frequency sampled data and have demonstrated that modeling errors appear to be reduced for slower sampled data \cite{Bowersox2021}. This study examines the impact of sampling rate on modeling error by simulating satellite data at various frequencies from high-frequency ground measurements at the NIST ground array \cite{Boyd2017,Boyd2017a,Boyd2017b}. The final paper will expand the study to also include simulated satellite data from the 7 SURFRAD stations \cite{Augustine2000}.
 
 \section{Methods}
+
 \subsection{Array Configuration}
 We used the NIST ground array, a fixed-tilt 260-kW PV system which is described in detail elsewhere \cite{Boyd2017,Boyd2017a,Boyd2017b}, as the base system for this study because it has a relatively low inverter loading ratio that allows the output to be clipped arbitrarily to simulate any DC/AC ratio. A weather station at the site collects inputs at 1-minute frequency, allowing simulation of satellite data at any sampling rate. We use SolarFarmer \cite{solarfarmer2018} to simulate the NIST ground array with a DC/AC ratio of 1.5, because SolarFarmer can use input at any frequency or duration.
 
@@ -69,7 +70,7 @@ The first 5 datasets were time-averaged at the different intervals to replicate 
 \label{section:results}
 
 \subsection{Analysis}
-The energy yield and clipping losses for each of the 15 SolarFarmer predictions are shown in Table~\ref{table:results-summary}. A plot of the "time-averaged" inputs is shown in Fig.~\ref{fig:time-averaged}. The 1-minute measurements correctly account for rapid ramp rates in the solar resource when predicting energy yield and clipping loss. However as the time-averaging interval increases, the energy yield is over-predicted and the clipping loss is under-predicted relative to the 1-minute measurements. The "instantaneous" results are shown in Fig.~\ref{fig:instantaneous}.
+The energy yield and clipping losses for each of the 15 SolarFarmer predictions are shown in Table~\ref{table:results-summary}. A plot of the "time-averaged" inputs is shown in Fig.~\ref{fig:time-averaged}. The 1-minute measurements correctly account for rapid ramp rates in the solar resource when predicting energy yield and clipping loss. However as the time-averaging interval increases, the energy yield is over-predicted and the clipping loss is under-predicted relative to the 1-minute measurements. Blue and orange arrows show the over-predicted energy and under-predicted clipping loss when using hourly "time-averaged" input.
 
 \begin{table}[htbp]
 \caption{Summary of SolarFarmer Results}
@@ -105,29 +106,32 @@ satellite    & 15& 142.0& -2.6 \\
 
 \begin{figure}[htbp]
 \centerline{\includegraphics[width=9cm]{time-averaged.png}}
-\caption{Energy yield (in blue on left axis) and clipping losses (in orange on right axis) are calculated using time-averaged inputs. The 1-minute measurements correctly account for rapid ramp rates in the solar resource when predicting energy yield and clipping loss. However as the time-averaging interval increases, the energy yield is over-predicted and the clipping loss is under-predicted relative to the 1-minute measurements.}
+\caption{Energy yield (in blue on left axis) and clipping losses (in orange on right axis) are calculated using "time-averaged" inputs. Dashed lines show the expected output. Blue and orange arrows show the modeling errors when using hourly "time-averaged" input.}
 \label{fig:time-averaged}
 \end{figure}
 
+The "instantaneous" results are shown in Fig.~\ref{fig:instantaneous}. The 1-minute results are identical to the 1-minute "time-averaged" shown in Fig.~\ref{fig:time-averaged}, because the measurement resolution is every minute. As input data is sampled at lower frequency (longer sampling rates), random errors occur in the input data and cancel out the modeling error.
+
 \begin{figure}[htbp]
 \centerline{\includegraphics[width=9cm]{instantaneous.png}}
-\caption{Daily (blue) and annual (red) capacity factor relative to DC nameplate for Boulder, CO, SURFRAD site (top) and distribution of annual DC energy per module (bottom).}
+\caption{Energy yield (in blue on left axis) and clipping losses (in orange on right axis) are calculated using "instantaneous" inputs. Dashed lines show the expected output. As input data is sampled less frequently, random errors in the input data cancel out modeling error.}
 \label{fig:instantaneous}
 \end{figure}
 
+The "simulated-satellite" results are shown in Fig.~\ref{fig:satellite-simulated}. The 1-minute results are identical to the 60-minute "time-averaged" shown in Fig.~\ref{fig:time-averaged}, because they both show 1-minute measurements averaged hourly. As input data is sampled at increasing frequency (shorter sampling rates), the modeling errors become more apparent. Because all of the "simulated-satellite" input is hourly, this trend is similar but opposite to the increase in modeling errors observed in "time-averaged" input as the interval is increased. The inflection point seems to be around 30-minutes. At sampling times longer than 30-minutes, random errors occur in the input data and cancel out the modeling error, similar to observations of the "instantaneous" input. However, we observe that even at input data sampled every 30-minutes, which is similar to TMY3, there is still non-zero modeling error.
+
 \begin{figure}[htbp]
 \centerline{\includegraphics[width=9cm]{satellite-simulated.png}}
-\caption{Daily (blue) and annual (red) capacity factor relative to DC nameplate for Desert Rock, NV, SURFRAD site (top) and distribution of annual DC energy per module (bottom).}
+\caption{Energy yield (in blue on left axis) and clipping losses (in orange on right axis) are calculated using "simulated-satellite" inputs. Dashed lines show the expected values. As input data is sampled at increasing frequency, the modeling errors become more apparent.}
 \label{fig:satellite-simulated}
 \end{figure}
 
 
 \subsection{Discussion}
-
-These SURFRAD sites do not cover all of the climates and regions in the US consistently. Most of the sites are in the interior, and there is a high concentration in the midwest. The average annual DC capacity factor is about 20\% with Desert Rock, NV, the exception at 28\%. There are no SURFRAD sites in the northwest, along the Pacific Coast, along the Gulf of Mexico, the Atlantic coast, or in the southeast, and there is only one site in the southwest, where there may be a high concentration of PV systems. For example Arizona or New Mexico. Therefore, the results of this study are limited and should not be extrapolated or applied uniformly to the entire United States.
+blah blah
 
 \section{Conclusions}
-We studied the question of whether TMY datasets are representative of the median predicted PV performance by comparing PV system simulations using TMY data with simulations using over 20 years of high-frequency, accurate, ground based SURFRAD measurements at 7 sites across the United States. We found that the TMY datasets all overpredicted the median SURFRAD annual performance at 5 of 7 sites. The PSM3 predictions were greater than the median for all sites, and greater than 90\% of years in 5 of 7 sites. TMY2 predictions were greater than 30-90\% of years at 6 sites except Desert Rock, NV which had no nearby TMY2 station. On average TMY3 predictions were closest to the SURFRAD median. Differences between the SURFRAD median and both TMY2 and TMY3 were within their uncertainties. Due to the lack of number of SURFRAD stations it is difficult to conclude whether there is a \textit{generic} high bias for TMY data. Although there is trend of generic high bias for PSM3 data, it is important to consider all available datasets and scrutinize them to determine the viability of long-term representative datasets. The distribution of differences from the SURFRAD median for both TMY2 and TMY3 stations were indiscernible; hence careful analysis is required to determine their utility in determining a long-term data set.
+blah blah
 
 \bibliographystyle{IEEEtran}
 % argument is your BibTeX string definitions and bibliography database(s)
