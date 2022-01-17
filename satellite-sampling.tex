@@ -104,13 +104,13 @@ satellite    & 15& 142.0& -2.6 \\
 \end{center}
 \end{table}
 
+The "instantaneous" results are shown in Fig.~\ref{fig:instantaneous}. The 1-minute results are identical to the 1-minute "time-averaged" shown in Fig.~\ref{fig:time-averaged}, because the measurement resolution is every minute. As input data is sampled at lower frequency (longer sampling rates), random errors occur in the input data and cancel out the modeling error.
+
 \begin{figure}[htbp]
 \centerline{\includegraphics[width=9cm]{time-averaged.png}}
 \caption{Energy yield (in blue on left axis) and clipping losses (in orange on right axis) are calculated using "time-averaged" inputs. Dashed lines show the expected output. Blue and orange arrows show the modeling errors when using hourly "time-averaged" input.}
 \label{fig:time-averaged}
 \end{figure}
-
-The "instantaneous" results are shown in Fig.~\ref{fig:instantaneous}. The 1-minute results are identical to the 1-minute "time-averaged" shown in Fig.~\ref{fig:time-averaged}, because the measurement resolution is every minute. As input data is sampled at lower frequency (longer sampling rates), random errors occur in the input data and cancel out the modeling error.
 
 \begin{figure}[htbp]
 \centerline{\includegraphics[width=9cm]{instantaneous.png}}
@@ -118,17 +118,16 @@ The "instantaneous" results are shown in Fig.~\ref{fig:instantaneous}. The 1-min
 \label{fig:instantaneous}
 \end{figure}
 
-The "simulated-satellite" results are shown in Fig.~\ref{fig:satellite-simulated}. The 1-minute results are identical to the 60-minute "time-averaged" shown in Fig.~\ref{fig:time-averaged}, because they both show 1-minute measurements averaged hourly. As input data is sampled at increasing frequency (shorter sampling rates), the modeling errors become more apparent. Because all of the "simulated-satellite" input is hourly, this trend is similar but opposite to the increase in modeling errors observed in "time-averaged" input as the interval is increased. The inflection point seems to be around 30-minutes. At sampling times longer than 30-minutes, random errors occur in the input data and cancel out the modeling error, similar to observations of the "instantaneous" input. However, we observe that even at input data sampled every 30-minutes, which is similar to TMY3, there is still non-zero modeling error.
-
 \begin{figure}[htbp]
 \centerline{\includegraphics[width=9cm]{satellite-simulated.png}}
 \caption{Energy yield (in blue on left axis) and clipping losses (in orange on right axis) are calculated using "simulated-satellite" inputs. Dashed lines show the expected values. As input data is sampled at increasing frequency, the modeling errors become more apparent.}
 \label{fig:satellite-simulated}
 \end{figure}
 
+The "simulated-satellite" results are shown in Fig.~\ref{fig:satellite-simulated}. The 1-minute results are identical to the 60-minute "time-averaged" shown in Fig.~\ref{fig:time-averaged}, because they both show 1-minute measurements averaged hourly. As input data is sampled at increasing frequency (shorter sampling rates), the modeling errors become more apparent. Because all of the "simulated-satellite" input is hourly, this trend is similar but opposite to the increase in modeling errors observed in "time-averaged" input as the interval is increased. The inflection point seems to be around 30-minutes. At sampling times longer than 30-minutes, random errors occur in the input data and cancel out the modeling error, similar to observations of the "instantaneous" input. However, we observe that even at input data sampled every 30-minutes, which is similar to TMY3, there is still non-zero modeling error.
 
 \subsection{Discussion}
-blah blah
+Several studies have already demonstrated the modeling errors observed in Fig.~\ref{fig:time-averaged} due to using hourly averaged input. Newer studies have also shown the apparent reduction in errors due to using "instantaneous" data due to random errors as shown in Fig.~\ref{fig:instantaneous}. This study demonstrates that there are still modeling errors when using satellite data even at 30-minute sampling rates as shown in Fig.~\ref{fig:satellite-simulated}. We also demonstrate that modeling errors will be even larger for satellite data sampled every 15-minutes or faster. From this study we recommend that modeling error corrections be applied whenever hourly input data is used. From this preliminary study, we infer that subhourly modeling errors may be halved when using satellite data, but more study is required. Therefore in the final draft of this paper we propose to repeat this study using full years and solar resource from SURFRAD in addition to the NIST weather station.
 
 \section{Conclusions}
 blah blah
