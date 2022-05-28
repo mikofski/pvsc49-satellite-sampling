@@ -17,7 +17,7 @@ institution  = {National Renewable Energy Laboratory},
 keywords     = {August 2012,NREL,NREL/TP-5500-54824,NSRDB,National Renewable Energy Laboratory,National Solar Radiation Database,solar data,solar resource,user's manual},
 number       = {NREL/TP-5500-54824},
 title        = {{National Solar Radiation Database 1991–2010 Update: User's Manual }},
-url          = {http://www.nrel.gov/docs/fy12osti/54824.pdf},
+url          = {https://www.nrel.gov/docs/fy12osti/54824.pdf},
 year         = {2012}
 }
 @inproceedings{Bowersox2021,
@@ -140,7 +140,7 @@ month = {nov},
 number = {1},
 pages = {014503},
 title = {{Comparative Performance and Model Agreement of Three Common Photovoltaic Array Configurations}},
-url = {http://solarenergyengineering.asmedigitalcollection.asme.org/article.aspx?doi=10.1115/1.4038314},
+url = {https://solarenergyengineering.asmedigitalcollection.asme.org/article.aspx?doi=10.1115/1.4038314},
 volume = {140},
 year = {2017}
 }
@@ -154,7 +154,7 @@ keywords = {data acquisition,inverter,meteorology,photovoltaic,solar,weather sta
 number = {3},
 pages = {034502},
 title = {{High-Speed Monitoring of Multiple Grid-Connected Photovoltaic Array Configurations and Supplementary Weather Station}},
-url = {http://solarenergyengineering.asmedigitalcollection.asme.org/article.aspx?doi=10.1115/1.4035830},
+url = {https://solarenergyengineering.asmedigitalcollection.asme.org/article.aspx?doi=10.1115/1.4035830},
 volume = {139},
 year = {2017}
 }
@@ -188,3 +188,37 @@ title     = {{Accurate Performance Predictions of Large PV Systems with Shading 
 url       = {https://ieeexplore.ieee.org/document/8547323/},
 year      = {2018}
 }
+@article{pvlib2018,
+abstract = {pvlib python is a community-supported open source tool that provides a set of functions and classes for simulating the performance of photovoltaic energy systems. pvlib python aims to provide reference implementations of models relevant to solar energy, including for example algorithms for solar position, clear sky irradiance, irradiance transposition, DC power, and DC-to-AC power conversion. pvlib python is an important component of a growing ecosystem of open source tools for solar energy (William F. Holmgren, Hansen, Stein, & Mikofski, 2018). pvlib python is developed on GitHub by contributors from academia, national laboratories , and private industry. pvlib python is released with a BSD 3-clause license allowing permissive use with attribution. pvlib python is extensively tested for functional and algorithm consistency. Continuous integration services check each pull request on multiple platforms and Python versions. The pvlib python API is thoroughly documented and detailed tutorials are provided for many features. The documentation includes help for installation and guidelines for contributions. The documentation is hosted at readthe-docs.org as of this writing. A Google group and StackOverflow tag provide venues for user discussion and help. The pvlib python API was designed to serve the various needs of the many subfields of solar power research and engineering. It is implemented in three layers: core functions, the Location and PVSystem classes, and the ModelChain class. The core API consists of a collection of functions that implement algorithms. These algorithms are typically implementations of models described in peer-reviewed publications. The functions provide maximum user flexibility, however many of the function arguments require an unwieldy number of parameters. The next API level contains the Location and PVSystem classes. These abstractions provide simple methods that wrap the core function API layer. The method API simplification is achieved by separating the data that represents the object (object attributes) from the data that the object methods operate on (method arguments). For example, a Location is represented by a latitude, longitude, elevation, timezone, and name, which are Location object attributes. Then a Location object method operates on a datetime to get the corresponding solar position. The methods combine these data sources when calling the function layer, then return the results to the user. The final level of API is the ModelChain class, designed to simplify and standardize the process of stitching together the many modeling steps necessary to convert a time series of weather data to AC solar power generation, given a PV system and a location.},
+author = {Holmgren, William F. and Hansen, Clifford W. and Mikofski, Mark A.},
+doi = {10.21105/joss.00884},
+issn = {2475-9066},
+journal = {Journal of Open Source Software},
+month = {sep},
+number = {29},
+pages = {884},
+title = {pvlib python: a python package for modeling solar energy systems},
+url = {https://joss.theoj.org/papers/10.21105/joss.00884},
+volume = {3},
+year = {2018}
+}
+@techreport{Freeman2018,
+abstract = {This document describes the capabilities of the System Advisor Model (SAM) developed and distributed by the U.S. Department of Energy's National Renewable Energy Laboratory. The document is for potential users and others wanting to learn about the model's capabilities. SAM is a techno-economic computer model that calculates performance and financial metrics of renewable energy projects. Project developers, policy makers, equipment manufacturers, and researchers use graphs and tables of SAM results in the process of evaluating financial, technology, and incentive options for renewable energy projects. SAM simulates the performance of photovoltaic, concentrating solar power, solar water heating, wind, geothermal, biomass, and conventional power systems. The financial models are for projects that either buy and sell electricity at retail rates (residential and commercial) or sell electricity at a price determined in a power purchase agreement (PPA). SAM's simulation tools facilitate parametric and sensitivity analyses, Monte Carlo simulation and weather variability (P50/P90) studies. SAM can also read input variables from Microsoft Excel worksheets. For software developers, the SAM software development kit (SDK) makes it possible to use SAM simulation modules in their applications written in C/C plus plus, C sharp, Java, Python, MATLAB, and other languages. NREL provides both SAM and the SDK as free downloads at https://sam.nrel.gov. SAM is an open source project, so its source code is available to the public. Researchers can study the code to understand the model algorithms, and software programmers can contribute their own models and enhancements to the project. Technical support and more information about the software are available on the website.},
+address = {Golden, CO (United States)},
+author = {Freeman, Janine M. and DiOrio, Nicholas A. and Blair, Nathan J. and Neises, Ty W. and Wagner, Michael J. and Gilman, Paul and Janzou, Steven},
+doi = {10.2172/1440404},
+institution = {National Renewable Energy Laboratory (NREL)},
+month = {may},
+number = {NREL/TP-6A20-70414},
+title = {{System Advisor Model (SAM) General Description (Version 2017.9.5)}},
+url = {https://www.nrel.gov/docs/fy18osti/70414.pdf},
+year = {2018}
+}
+@INPROCEEDINGS{9519024,
+author={Mikofski, Mark A. and Kharait, Rounak},
+booktitle={2021 IEEE 48th Photovoltaic Specialists Conference (PVSC)},
+title={Comparison of Predicted PV System Performance with SURFRAD versus TMY},
+year={2021},
+pages={2155-2159},
+doi={10.1109/PVSC43889.2021.9519024},
+url={https://ieeexplore.ieee.org/document/9519024}}
