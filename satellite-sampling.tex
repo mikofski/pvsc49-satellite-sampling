@@ -51,7 +51,7 @@ For the first part of this study, we used the NIST ground array, a fixed-tilt 26
 For the second part of this study, we used an imaginary system consisting of a strings of generic 300-W mono-crystalline silicon modules (Canadian Solar CS6X-300M) connected to a single generic 250kW central inverter (SMA America SC250U (480V)), such that the DC/AC ratio was 1.3. The module and inverter parameters were sourced from the NREL System Advisor Model (SAM) libraries \cite{Freeman2018}. High frequency 1-minute input from SURFRAD \cite{Augustine2000} was used with pvlib python \cite{pvlib2018} to predict plane of array (POA) irradiance components, effective irradiance, cell temperature, DC power, and AC output. The method was based on a previous study \cite{9519024} with minor differences. SURFRAD data was filtered for data quality and only years containing at least 98\% complete set of global horizontal irradiance (GHI), diffuse horizontal irradiance (DHI), direct normal irradiance (DNI), air temperature, wind speed, relative humidity, pressure, and solar zenith were used. The SURFRAD irradiance components were checked for self consistency 
 
 \begin{equation}
-GHI = 
+\mathit{GHI} = \mathit{DHI} + \mathit{DNI} \cos{\left(\mathit{solar\ zenith}\right)}
 \end{equation}
 
 
