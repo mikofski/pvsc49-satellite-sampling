@@ -26,13 +26,13 @@
 
 \title{Effects of Satellite Sampling on Subhourly Modeling Errors}
 
-\author{\IEEEauthorblockN{Mark A. Mikofski, Abhishek Parikh, William F. Holmgren, Jeffrey Newmiller, and Rounak Kharait}
+\author{\IEEEauthorblockN{Mark A. Mikofski, William F. Holmgren, Jeffrey Newmiller, and Rounak Kharait}
 \IEEEauthorblockA{DNV, Oakland, CA, 94612, USA }}
 
 \maketitle
 
 \begin{abstract}
-Modeling errors due to hourly inputs averaged from high frequency measurements can be significant where solar resource variability and inverter loading ratios are both high. However, satellite data sources average low frequency measurements. This paper studies the effects of satellite sampling frequency on subhourly modeling errors. We simulate satellite data from high frequency measurements by selecting instantaneous measurements at a lower sampling rate then averaging selected instantaneous measurements for the hour. With simulated satellite data sampled every 30-minutes or shorter we observe modeling errors, but for sampling rates longer than 30-minutes, modeling errors appear to cancel out annually possibly due to random errors in the sampled data. Similar effects have been observed by other researchers, and the results of this study seem to confirm their findings. However, the modeling error is not completely canceled out. Even with input sampled every 30-minutes, we still see some modeling error, and the modeling error increases as sampling rates get shorter. Based on our observations, we recommend that a modeling error correction be applied whenever hourly inputs are used, especially at sites with high solar variability and DC/AC ratios greater than one.
+Modeling errors due to hourly inputs averaged from high frequency measurements are significant where solar resource variability and inverter loading ratio are both high. However, solar resource inputs from satellite data are averaged from low frequency measurements. Therefore, we studied the effects of satellite sampling rate on modeling errors by simulating satellite data using high frequency measurements from 8 different locations across the United States. We simulated satellite data by selecting instantaneous measurements at various sampling rates and averaging them to hourly. We observed increasing modeling errors for sampling rates 30-minutes or shorter. For sampling rates longer than 30-minutes, modeling errors decreased, canceling out due to the randomness of the low frequency sampled data. We examined modeling errors further and observed that clipping errors dominated modeling errors from other sources like transposition to POA or DC energy conversion. Based on our observations, we recommend that an hourly modeling correction be applied whenever hourly inputs are used, especially at sites with high solar variability and DC/AC ratios greater than one.
 \end{abstract}
 
 \begin{IEEEkeywords}
