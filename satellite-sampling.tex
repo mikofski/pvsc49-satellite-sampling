@@ -33,7 +33,7 @@
 \maketitle
 
 \begin{abstract}
-PV power modeling errors due to hourly inputs averaged from high frequency measurements are significant where solar resource variability and inverter loading ratio are both high. However, hourly solar resource inputs from satellite data providers are averaged from images obtained every 5-60 minutes. Therefore, we studied the effects of satellite sampling rate on modeling errors by simulating satellite data using high frequency measurements from 8 different locations across the United States. We simulated satellite data by selecting minute-average measurements at various sampling rates and averaging them to hourly data. We observed increasing modeling errors for sampling rates 30-minutes or shorter. For sampling rates of 30 and 60 minutes, modeling errors decreased, partially canceling out due to the randomness of the low frequency sampled data. We examined modeling errors further and observed that clipping errors dominated modeling errors from other sources like transposition to POA or DC energy conversion. Based on our analysis, we recommend that an hourly modeling correction be applied whenever hourly inputs are used, especially at sites with high solar variability and DC/AC ratios greater than one.
+PV power modeling errors due to hourly inputs averaged from high frequency measurements are significant where solar resource variability and inverter loading ratio are both high. However, satellite data providers compute hourly averages from images obtained every 5-60 minutes. Therefore, we studied the effects of satellite sampling rate on modeling errors by simulating satellite data using high frequency measurements from 8 different locations across the United States. We simulated satellite data by selecting minute-average measurements at various sampling rates and averaging them to hourly data. We observed increasing modeling errors for sampling rates 30-minutes or shorter. For sampling rates of 30 and 60 minutes, modeling errors decreased, partially canceling out due to the randomness of the low frequency sampled data. We examined modeling errors further and observed that clipping errors dominated modeling errors from other sources like transposition to POA or DC energy conversion. Based on our analysis, we recommend that an hourly modeling correction be applied whenever hourly inputs are used, especially at sites with high solar variability and DC/AC ratios greater than one.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -41,7 +41,7 @@ inverter, clipping, satellite, sampling, solar resource, irradiance, variability
 \end{IEEEkeywords}
 
 \section{Introduction}
-Accurate solar energy assessments are important for lowering the cost of capital for PV systems. However, continuing under-performance of solar assets over the past few years may be damaging investor confidence \cite{Matsui2021}. Several studies have examined potential sources of under-prediction, and modeling errors due to hourly inputs have recently received renewed interest \cite{Parikh2021,Anderson2020,Bradford2020,Kharait2020,Cormode2019}. These modeling errors arise from differences in predicted clipping losses and energy output between using hourly versus subhourly input. When hourly input is time-averaged from high frequency subhourly measurements, energy output is over-predicted and clipping losses are under-predicted. However, TMY satellite data is generated from low frequency measurements that are sampled at 15-minute or 30-minute intervals \cite{Wilcox2012,Sengupta2018}. Recently, a few studies have investigated the difference between hourly input time-averaged from high frequency versus hourly input generated from low frequency sampled data and have demonstrated that modeling errors appear to be reduced for slower sampled data \cite{Bowersox2021}. This study examines the impact of subhourly irradiance sampling rate on hourly PV modeling error by simulating satellite data at various frequencies from high frequency ground measurements at the NIST ground array \cite{Boyd2017,Boyd2017a,Boyd2017b} and the 7 SURFRAD stations \cite{Augustine2000}. In the following sections we describe our methods, show our results, and discuss our observations.
+Accurate solar energy assessments are important for lowering the cost of capital for PV systems. However, continuing under-performance of solar assets over the past few years may be damaging investor confidence \cite{Matsui2021}. Several studies have examined potential sources of under-prediction, and modeling errors due to hourly inputs have recently received renewed interest \cite{Parikh2021,Anderson2020,Bradford2020,Kharait2020,Cormode2019}. These modeling errors arise from differences in predicted clipping losses and energy output between using hourly versus subhourly input. When hourly input is time-averaged from high frequency subhourly measurements, energy output is over-predicted and clipping losses are under-predicted. However, hourly satellite data is generated from low frequency measurements that are sampled at 15-minute or 30-minute intervals \cite{Wilcox2012,Sengupta2018}. Recently, a few studies have investigated the difference between hourly input time-averaged from high frequency versus hourly input generated from low frequency sampled data and have demonstrated that modeling errors appear to be reduced for slower sampled data \cite{Bowersox2021,osti_1797569}. This study examines the impact of subhourly irradiance sampling rate on hourly PV modeling error by simulating satellite data at various frequencies from high frequency ground measurements at the NIST ground array \cite{Boyd2017,Boyd2017a,Boyd2017b} and the 7 SURFRAD stations \cite{Augustine2000}. In the following sections we describe our methods, show our results, and discuss our observations.
 
 \section{Methods}
 
@@ -49,18 +49,12 @@ Accurate solar energy assessments are important for lowering the cost of capital
 For the first part of this study, we used the NIST ground array, a fixed-tilt 260-kW PV system \cite{Boyd2017,Boyd2017a,Boyd2017b}, as the base system and varied the inverter loading ratio by adding additional DC capacity with the same pitch and racking as the existing rows. A weather station at the site collects inputs at 1-minute frequency, allowing simulation of satellite data at any sampling rate. We used SolarFarmer \cite{solarfarmer2018} to simulate a fictitious version of the NIST ground array with a DC/AC ratio of 1.5, because SolarFarmer can use inputs at any frequency.
 
 \subsection{Generic Array Configuration for SURFRAD}
-For the second part of this study, we simulated a system consisting of strings of generic 300-W mono-crystalline silicon modules (Canadian Solar CS6X-300M) connected to a single generic 250kW central inverter (SMA America SC250U (480V)), such that the DC/AC ratio was 1.3. The module and inverter parameters were sourced from the NREL System Advisor Model (SAM) libraries \cite{Freeman2018}. 1-minute average input from 7 SURFRAD \cite{Augustine2000} stations was used with pvlib python \cite{pvlib2018} to predict plane of array (POA) irradiance components, effective irradiance, cell temperature, DC power, and AC output. The method was based on a previous study \cite{9519024} with minor differences. SURFRAD data was filtered for data quality and only years containing at least 98\% of global horizontal irradiance (GHI), diffuse horizontal irradiance (DHI), direct normal irradiance (DNI), air temperature, wind speed, relative humidity, pressure, and solar zenith were used. The SURFRAD irradiance components were checked for self consistency in (\ref{eq:irradiance-components}). Therefore, decomposition was not necessary.
-
-% don't use $$stuff$$ because it doesn't label equations
-\begin{equation}
-\mathit{GHI} = \mathit{DHI} + \mathit{DNI} \cos{\left(\mathit{solar\ zenith}\right)}
-\label{eq:irradiance-components}
-\end{equation}
+For the second part of this study, we simulated a system consisting of strings of generic 300-W mono-crystalline silicon modules (Canadian Solar CS6X-300M) connected to a single generic 250kW central inverter (SMA America SC250U (480V)), such that the DC/AC ratio was 1.3. The module and inverter parameters were sourced from the NREL System Advisor Model (SAM) libraries \cite{Freeman2018}. There are 7 SURFRAD \cite{Augustine2000} stations across the United States that provide 1-minute average input since 2009. Compared to hourly satellite data, 1-minute is relatively instantaneous. Therefore, we refer to the SURFRAD 1-minute averages as instantaneous for the remainder of this paper. The instantaneous data was used with pvlib python \cite{pvlib2018} to predict plane of array (POA) irradiance components, effective irradiance, cell temperature, DC power, and AC output. The method was based on a previous study \cite{9519024} with minor differences. SURFRAD data was filtered for data quality, visually inspected, and problematic rows were droped from the dataset. Then, only years containing at least 98\% of global horizontal irradiance (GHI), diffuse horizontal irradiance (DHI), direct normal irradiance (DNI), air temperature, wind speed, relative humidity, pressure, and solar zenith were considered. The SURFRAD irradiance components were checked for self consistency.
 
 Wind speed measurements were available so the thermal coefficients were changed to $U_c=25, U_v=1.2$, and a moving average with a 10-minute window was used to smooth unrealistic high frequency cell temperatures \cite{9095219}. Finally the Sandia National Laboratory performance model for grid-connection PV inverters \cite{King2007} was used to calculate AC power ($E_{grid}$).
 
 \subsection{Input Data}
-This study uses a method similar to others to simulate low-frequency satellite data from higher frequency measurements \cite{Bowersox2021}. Although this method cannot exactly reproduce the complex algorithms used to generate satellite data, we believe it is sufficient to study modeling errors caused by using low frequency inputs. Using a full year of data from each of the 8 locations, we created 15 different sets of irradiance input from the 1-minute measurements to study the effect of sampling rate and time averaging on the modeling error. The datasets can be grouped into three categories: \emph{time-averaged}, \emph{instantaneous}, and \emph{simulated satellite} each with 5 datasets that have either time-averaged or instantaneously sampled data at the following intervals or frequencies:
+This study uses a method similar to others to simulate low-frequency satellite data from higher frequency measurements \cite{Bowersox2021,osti_1797569}. Although this method cannot exactly reproduce the complex algorithms used to generate satellite data, we believe it is sufficient to study modeling errors caused by using low frequency inputs. Using a full year of data from each of the 8 locations, we created 15 different sets of irradiance input from the 1-minute measurements to study the effect of sampling rate and time averaging on the modeling error. The datasets can be grouped into three categories: \emph{time-averaged}, \emph{instantaneous}, and \emph{simulated hourly satellite} each with 5 datasets that have either time-averaged or instantaneously sampled data at the following intervals or frequencies:
 
 \begin{itemize}
     \item 1-minute
@@ -70,11 +64,11 @@ This study uses a method similar to others to simulate low-frequency satellite d
     \item 60-minutes
 \end{itemize}
 
-\emph{Time-averaged}: The first 5 datasets are the 1 minute records time-averaged at the different intervals to replicate the modeling error observed when high frequency input data is aggregated.
+\emph{Time-averaged}: The first 5 datasets are the 1 minute records time-averaged at the different intervals. We do this to simulate the modeling error observed when high frequency input data is averaged.
 
-\emph{Instantaneous}: The next 5 datasets were generated by selecting a 1-minute record from the onsite measurements. For example, to generate the 15-minute sampled data from the NIST weather station, only 4 records were selected at the 7th, 22nd, 37th, and 52nd minutes as shown in Fig.~\ref{fig:sampling-diagram}. For the 7 SURFRAD sites the 1st, 16th, 31st, and 46th minutes were selected to generate the 15-minute instantaneous dataset. Note that the selection of the record itself is arbitrary; only the sampling rate matters. Also note that both the 1-minute time-averaged and instantaneous datasets are actually identical, because 1-minute was the resolution of the measured data.
+\emph{Instantaneous}: The next 5 datasets were generated by selecting a 1-minute record from the onsite measurements. To generate the 15-minute sampled data from the NIST weather station, only 4 records were selected at the 7th, 22nd, 37th, and 52nd minutes as shown in Fig.~\ref{fig:sampling-diagram}. For the 7 SURFRAD sites the 1st, 16th, 31st, and 46th minutes were selected to generate the 15-minute instantaneous dataset. Note that the selection of the record itself is arbitrary; only the sampling rate matters. Also note that both the 1-minute time-averaged and instantaneous datasets are actually identical, because 1-minute was the resolution of the measured data.
 
-\emph{Simulated satellite}: The last 5 datasets simulate satellite data by averaging the records in the instantaneous datasets to 1-hour. For example, to generate the 15-minute simulated satellite data from the NIST weather station, the 4 records shown in Fig.~\ref{fig:sampling-diagram} were averaged together to create one value for that hour. Note that the 60-minute time-averaged and 1-minute simulated satellite datasets are also identical because they both aggregate the 1-minute measured data to hourly. Also note that all of the simulated satellite data contain hourly inputs, while the time-averaged and instantaneous inputs have the resolutions given by the time-averaging interval or the instantaneous sampling rate.
+\emph{Simulated hourly satellite}: The last 5 datasets simulate satellite data by averaging the records in the instantaneous datasets to 1-hour. For example, to generate the 15-minute simulated satellite data from the NIST weather station, the 4 records shown in Fig.~\ref{fig:sampling-diagram} were averaged together to create one value for that hour. Note that the 60-minute time-averaged and 1-minute simulated satellite datasets are also identical because they both aggregate the 1-minute measured data to hourly. Also note that all of the simulated satellite data contain hourly inputs, while the time-averaged and instantaneous inputs have the resolutions given by the time-averaging interval or the instantaneous sampling rate.
 
 \begin{figure}[htbp]
 \centerline{\includegraphics[width=9cm]{sampling-diagram.png}}
@@ -151,66 +145,66 @@ Annual AC energy predicted for the generic array with pvlib python for each of t
 \begin{table}[htbp]
 \caption{Summary of Modeling Errors for SURFRAD Generic Arrays with pvlib python}
 \begin{center}
-\begin{tabular}{|c|c|c|c|c|}
+\begin{tabular}{|c|c|c|c|c|c|}
 \hline
-\textbf{Stat} & \textbf{\textit{Egrid}}& \textbf{\textit{Egrid}}& \textbf{\textit{Model}}& \textbf{\textit{Model}} \\
-              & \textbf{\textit{1-min}}& \textbf{\textit{60-min}}& \textbf{\textit{Error}}& \textbf{\textit{Error}} \\
-                 & \textit{MWh}& \textit{MWh}& \textit{60-min avg.}& \textit{30-min sat.} \\
+\textbf{Sta.}& \textbf{\textit{Egrid}}& \textbf{\textit{Egrid}}& \textbf{\textit{Model}}& \textbf{\textit{Egrid}}& \textbf{\textit{Model}} \\
+              & \textbf{\textit{1m-inst}}& \textbf{\textit{60m-avg}}& \textbf{\textit{Error}}& \textbf{\textit{30m-sat}}& \textbf{\textit{Error}} \\
+                 & \textit{MWh}& \textit{MWh}& \textit{60m-avg}& \textit{MWh}& \textit{30m-sat} \\
 \hline
-bon& 589& 599& 1.7\%& 0.9\% \\
-dra& 795& 802& 0.8\%& 0.3\% \\
-fpk& 576& 588& 2.2\%& 1.3\% \\
-gwn& 621& 629& 1.3\%& 0.3\% \\
-psu& 518& 528& 2.0\%& 0.7\% \\
-sxf& 559& 568& 1.6\%& 0.8\% \\
-tbl& 632& 648& 2.6\%& 1.7\% \\
+bon& 589& 599& 1.7\%&594& 0.9\% \\
+dra& 795& 802& 0.8\%&795& 0.03\% \\
+fpk& 576& 588& 2.2\%&584& 1.3\% \\
+gwn& 621& 629& 1.3\%&623& 0.3\% \\
+psu& 518& 528& 2.0\%&522& 0.7\% \\
+sxf& 559& 568& 1.6\%&564& 0.8\% \\
+tbl& 632& 648& 2.6\%&643& 1.7\% \\
 \hline
 \end{tabular}
 \label{table:SURFRAD-summary}
 \end{center}
 \end{table}
 
-The largest modeling errors are at Boulder, CO, for both hourly averaged and simulated satellite at 30-minute sampling rate. Desert Rock, NV, which as the highest annual AC energy output has the lowest modeling errors, but they are still non-zero, and may be dominated by other sources of error like POA transposition and DC energy conversion. Goodwin Creek, MS, has the second lowest modeling errors yet its annual AC production is similar to Boulder, CO. The lowest annual AC output is at Penn State, PA, and it has the 3rd largest modeling error. On average error of the simulated satellite data sampled at 30-minutes, is about half of error of the hourly averages compared to the 1-minute data.
+The largest modeling errors are at Boulder, CO, for both hourly averaged and simulated satellite at 30-minute sampling rate. Desert Rock, NV, which as the highest annual AC energy output has the lowest modeling errors, but they are still non-zero. Goodwin Creek, MS, has the second lowest modeling errors yet its annual AC production is similar to Boulder, CO. The lowest annual AC output is at Penn State, PA, and it has the 3rd largest modeling error. On average error of the simulated satellite data sampled at 30-minutes, is about half of error of the hourly averages compared to the 1-minute data.
 
 \begin{figure}[htbp]
 \centerline{\includegraphics[width=9cm]{analysis/bon2010.png}}
-\caption{Annual AC energy for all 3 datasets at Bondville, IL, in 2010 shows a modeling error of 1.7\% for hourly averaged input. Simulated satellite shows 0.9\% error at 30-minutes and increases for shorter sampling rates.}
+\caption{Annual AC energy for all 3 datasets at Bondville, IL, in 2010 shows 1.7\% modeling error for hourly averaged input. Simulated satellite shows 0.9\% error at 30-minutes and increases for shorter sampling rates.}
 \label{fig:bon2010}
 \end{figure}
 
 \begin{figure}[htbp]
 \centerline{\includegraphics[width=9cm]{analysis/dra2011.png}}
-\caption{Annual AC energy for all 3 datasets at Desert Rock, NV, in 2011 shows only 0.8\% modeling error for hourly averaged input. Simulated satellite at 30-minutes shows only 0.3\% error. Desert Rock has the highest output of the 7 SURFRAD sites, so presumably there are very few mid-day ramp rates that would cause clipping errors, and therefore, error might be dominated by POA transposition and DC conversion only.}
+\caption{Annual AC energy for all 3 datasets at Desert Rock, NV, in 2011 shows 0.8\% modeling error for hourly averaged input. Simulated satellite at 30-minutes shows only 0.03\% error. Desert Rock has the highest output of the 7 SURFRAD sites.}
 \label{fig:dra2011}
 \end{figure}
 
 \begin{figure}[htbp]
 \centerline{\includegraphics[width=9cm]{analysis/fpk2009.png}}
-\caption{Annual AC energy for all 3 datasets at Fort Peck, MT, in 2009 shows a modeling error of 2.2\% for hourly averaged input. Simulated satellite shows 1.3\% error at 30-minutes and increases for shorter sampling rates.}
+\caption{Annual AC energy for all 3 datasets at Fort Peck, MT, in 2009 shows 2.2\% modeling error for hourly averaged input. Simulated satellite shows 1.3\% error at 30-minutes and increases for shorter sampling rates.}
 \label{fig:fpk2009}
 \end{figure}
 
 \begin{figure}[htbp]
 \centerline{\includegraphics[width=9cm]{analysis/gwn2012.png}}
-\caption{Annual AC energy for all 3 datasets at Goodwin Creek, MS, in 2012 shows a modeling error of 1.3\% for hourly averaged input. Simulated satellite at 30-minutes shows only 0.3\% error, but the error still increases with shorter sampling rates.}
+\caption{Annual AC energy for all 3 datasets at Goodwin Creek, MS, in 2012 shows 1.3\% modeling error for hourly averaged input. Simulated satellite at 30-minutes shows only 0.3\% error, but the error still increases with shorter sampling rates.}
 \label{fig:gwn2012}
 \end{figure}
 
 \begin{figure}[htbp]
 \centerline{\includegraphics[width=9cm]{analysis/psu2010.png}}
-\caption{Annual AC energy for all 3 datasets at Penn State, PA, in 2010 shows a modeling error of 2\% for hourly averaged input. Simulated satellite shows 0.7\% error at 30-minute and increases for shorter sampling rates.}
+\caption{Annual AC energy for all 3 datasets at Penn State, PA, in 2010 shows 2\% modeling error for hourly averaged input. Simulated satellite shows 0.7\% error at 30-minute and increases for shorter sampling rates.}
 \label{fig:psu2010}
 \end{figure}
 
 \begin{figure}[htbp]
 \centerline{\includegraphics[width=9cm]{analysis/sxf2009.png}}
-\caption{Annual AC energy for all 3 datasets at Sioux Falls, SD, in 2009 shows a modeling error of 1.6\% for hourly averaged input. Simulated satellite shows 0.8\% error at 30 minutes and increases for shorter sampling rates.}
+\caption{Annual AC energy for all 3 datasets at Sioux Falls, SD, in 2009 shows 1.6\% modeling error for hourly averaged input. Simulated satellite shows 0.8\% error at 30 minutes and increases for shorter sampling rates.}
 \label{fig:sxf2009}
 \end{figure}
 
 \begin{figure}[htbp]
 \centerline{\includegraphics[width=9cm]{analysis/tbl2010.png}}
-\caption{Annual AC energy for all 3 datasets at Boulder, CO, in 2010 shows a modeling error of 2.6\% for hourly averaged input, the largest of the 7 SURFRAD sites. Simulated satellite shows an error of 1.7\% at 30-minutes and increases for shorter sampling rates.}
+\caption{Annual AC energy for all 3 datasets at Boulder, CO, in 2010 shows 2.6\% modeling error for hourly averaged input, the largest of the 7 SURFRAD sites. Simulated satellite shows an error of 1.7\% at 30-minutes and increases for shorter sampling rates.}
 \label{fig:tbl2010}
 \end{figure}
 
