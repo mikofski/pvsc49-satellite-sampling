@@ -140,24 +140,24 @@ Clipping losses for all 3 datasets are shown in Fig.~\ref{fig:NIST-clipping-loss
 The POA, shown Fig.~\ref{fig:NIST-POA}, is also over-predicted when using hourly time-averaged inputs relative to 1-minute. However, the POA error is only 0.4\%, significantly less than the modeling error in energy yield. Therefore, we observe that clipping errors dominate the hourly modeling error.
 
 \subsection{Analysis of Generic Array with SURFRAD}
-Annual AC energy predicted for the generic array with pvlib python for each of the 15 datasets for each of the 7 SURFRAD stations are shown in Fig.~\ref{fig:bon2010}, \ref{fig:dra2011}, \ref{fig:fpk2009}, \ref{fig:gwn2012}, \ref{fig:psu2010}, \ref{fig:sxf2009}, \& \ref{fig:tbl2010}. The annual AC energy at 1-minute and hourly averages as well as the modeling errors for hourly averaged input and for satellite simulated with 30-minute sampling rate both relative to 1-minute are summarized in Table  \ref{table:SURFRAD-summary}.
+Annual AC energy predicted for the generic array with pvlib python for each of the 15 datasets for each of the 7 SURFRAD stations are shown in Fig.~\ref{fig:bon2010}, \ref{fig:dra2011}, \ref{fig:fpk2009}, \ref{fig:gwn2012}, \ref{fig:psu2010}, \ref{fig:sxf2009}, \& \ref{fig:tbl2010}. The annual AC energy at 1-minute and hourly averages as well as the modeling errors for hourly averaged input and for satellite simulated with 30-minute sampling rate both relative to 1-minute are summarized in Table  \ref{table:SURFRAD-summary} for the first year.
 
 \begin{table}[htbp]
 \caption{Summary of Modeling Errors for SURFRAD Generic Arrays with pvlib python}
 \begin{center}
 \begin{tabular}{|c|c|c|c|c|c|}
 \hline
-\textbf{Sta.}& \textbf{\textit{Egrid}}& \textbf{\textit{Egrid}}& \textbf{\textit{Model}}& \textbf{\textit{Egrid}}& \textbf{\textit{Model}} \\
-              & \textbf{\textit{1m-inst}}& \textbf{\textit{60m-avg}}& \textbf{\textit{Error}}& \textbf{\textit{30m-sat}}& \textbf{\textit{Error}} \\
+\textbf{Station-}& \textbf{\textit{Egrid}}& \textbf{\textit{Egrid}}& \textbf{\textit{Model}}& \textbf{\textit{Egrid}}& \textbf{\textit{Model}} \\
+              \textbf{Year}& \textbf{\textit{1m-inst}}& \textbf{\textit{60m-avg}}& \textbf{\textit{Error}}& \textbf{\textit{30m-sat}}& \textbf{\textit{Error}} \\
                  & \textit{MWh}& \textit{MWh}& \textit{60m-avg}& \textit{MWh}& \textit{30m-sat} \\
 \hline
-bon& 589& 599& 1.7\%&594& 0.9\% \\
-dra& 795& 802& 0.8\%&795& 0.03\% \\
-fpk& 576& 588& 2.2\%&584& 1.3\% \\
-gwn& 621& 629& 1.3\%&623& 0.3\% \\
-psu& 518& 528& 2.0\%&522& 0.7\% \\
-sxf& 559& 568& 1.6\%&564& 0.8\% \\
-tbl& 632& 648& 2.6\%&643& 1.7\% \\
+bon-2010& 589& 599& 1.7\%&594& 0.9\% \\
+dra-2011& 795& 802& 0.8\%&795& 0.03\% \\
+fpk-2009& 576& 588& 2.2\%&584& 1.3\% \\
+gwn-2012& 621& 629& 1.3\%&623& 0.3\% \\
+psu-2010& 518& 528& 2.0\%&522& 0.7\% \\
+sxf-2009& 559& 568& 1.6\%&564& 0.8\% \\
+tbl-2012& 632& 648& 2.6\%&643& 1.7\% \\
 \hline
 \end{tabular}
 \label{table:SURFRAD-summary}
@@ -167,44 +167,44 @@ tbl& 632& 648& 2.6\%&643& 1.7\% \\
 The largest modeling errors are at Boulder, CO, for both hourly averaged and simulated satellite at 30-minute sampling rate. Desert Rock, NV, which as the highest annual AC energy output has the lowest modeling errors, but they are still non-zero. Goodwin Creek, MS, has the second lowest modeling errors yet its annual AC production is similar to Boulder, CO. The lowest annual AC output is at Penn State, PA, and it has the 3rd largest modeling error. On average error of the simulated satellite data sampled at 30-minutes, is about half of error of the hourly averages compared to the 1-minute data.
 
 \begin{figure}[htbp]
-\centerline{\includegraphics[width=9cm]{analysis/bon2010.png}}
-\caption{Annual AC energy for all 3 datasets at Bondville, IL, in 2010 shows 1.7\% modeling error for hourly averaged input. Simulated satellite shows 0.9\% error at 30-minutes and increases for shorter sampling rates.}
+\centerline{\includegraphics[width=9cm]{analysis/bon_all.png}}
+\caption{Annual AC energy modeling error at Bondville, IL. The solid lines and shaded areas show the average and 1-$\sigma$. Time-averaged input (blue) increases with longer averaging interval, simulated satellite (red) decreases with slower sampling rate, while instantaneous (green) is relatively unchanged.}
 \label{fig:bon2010}
 \end{figure}
 
 \begin{figure}[htbp]
-\centerline{\includegraphics[width=9cm]{analysis/dra2011.png}}
-\caption{Annual AC energy for all 3 datasets at Desert Rock, NV, in 2011 shows 0.8\% modeling error for hourly averaged input. Simulated satellite at 30-minutes shows only 0.03\% error. Desert Rock has the highest output of the 7 SURFRAD sites.}
+\centerline{\includegraphics[width=9cm]{analysis/dra_all.png}}
+\caption{Annual AC energy modeling error at Desert Rock, NV. The solid lines and shaded areas show the average and 1-$\sigma$. Desert Rock had the highest output and the lowest modeling error of the 7 SURFRAD sites presumably due to its high irradiance and clear skies.}
 \label{fig:dra2011}
 \end{figure}
 
 \begin{figure}[htbp]
-\centerline{\includegraphics[width=9cm]{analysis/fpk2009.png}}
-\caption{Annual AC energy for all 3 datasets at Fort Peck, MT, in 2009 shows 2.2\% modeling error for hourly averaged input. Simulated satellite shows 1.3\% error at 30-minutes and increases for shorter sampling rates.}
+\centerline{\includegraphics[width=9cm]{analysis/fpk_all.png}}
+\caption{Annual AC energy modeling error at Fort Peck, MT. The solid lines and shaded areas show the average and 1-$\sigma$. Time-averaged input (blue) increases with longer averaging interval, simulated satellite (red) decreases with slower sampling rate, while instantaneous (green) is relatively unchanged.}
 \label{fig:fpk2009}
 \end{figure}
 
 \begin{figure}[htbp]
-\centerline{\includegraphics[width=9cm]{analysis/gwn2012.png}}
-\caption{Annual AC energy for all 3 datasets at Goodwin Creek, MS, in 2012 shows 1.3\% modeling error for hourly averaged input. Simulated satellite at 30-minutes shows only 0.3\% error, but the error still increases with shorter sampling rates.}
+\centerline{\includegraphics[width=9cm]{analysis/gwn_all.png}}
+\caption{Annual AC energy modeling error at Goodwin Creek, MS. There was only one year with sufficient data quality. Time-averaged input (blue) increases with longer averaging interval, simulated satellite (red) decreases with slower sampling rate, while instantaneous (green) is relatively unchanged.}
 \label{fig:gwn2012}
 \end{figure}
 
 \begin{figure}[htbp]
-\centerline{\includegraphics[width=9cm]{analysis/psu2010.png}}
-\caption{Annual AC energy for all 3 datasets at Penn State, PA, in 2010 shows 2\% modeling error for hourly averaged input. Simulated satellite shows 0.7\% error at 30-minute and increases for shorter sampling rates.}
+\centerline{\includegraphics[width=9cm]{analysis/psu_all.png}}
+\caption{Annual AC energy modeling error at Penn State, PA. The solid lines and shaded areas show the average and 1-$\sigma$. Time-averaged input (blue) increases with longer averaging interval, simulated satellite (red) decreases with slower sampling rate, while instantaneous (green) is relatively unchanged.}
 \label{fig:psu2010}
 \end{figure}
 
 \begin{figure}[htbp]
-\centerline{\includegraphics[width=9cm]{analysis/sxf2009.png}}
-\caption{Annual AC energy for all 3 datasets at Sioux Falls, SD, in 2009 shows 1.6\% modeling error for hourly averaged input. Simulated satellite shows 0.8\% error at 30 minutes and increases for shorter sampling rates.}
+\centerline{\includegraphics[width=9cm]{analysis/sxf_all.png}}
+\caption{Annual AC energy modeling error at Sioux Falls, SD. The solid lines and shaded areas show the average and 1-$\sigma$. Time-averaged input (blue) increases with longer averaging interval, simulated satellite (red) decreases with slower sampling rate, while instantaneous (green) is relatively unchanged.}
 \label{fig:sxf2009}
 \end{figure}
 
 \begin{figure}[htbp]
-\centerline{\includegraphics[width=9cm]{analysis/tbl2010.png}}
-\caption{Annual AC energy for all 3 datasets at Boulder, CO, in 2010 shows 2.6\% modeling error for hourly averaged input, the largest of the 7 SURFRAD sites. Simulated satellite shows an error of 1.7\% at 30-minutes and increases for shorter sampling rates.}
+\centerline{\includegraphics[width=9cm]{analysis/tbl_all.png}}
+\caption{Annual AC energy modeling error at Boulder, CO. The solid lines and shaded areas show the average and 1-$\sigma$. Time-averaged input (blue) increases with longer averaging interval, simulated satellite (red) decreases with slower sampling rate, while instantaneous (green) is relatively unchanged.}
 \label{fig:tbl2010}
 \end{figure}
 
