@@ -15,7 +15,7 @@
 \usepackage{gensymb}
 % splits a section into multiple columns
 \usepackage{multicol}
-%\usepackage{balance}
+\usepackage{balance}
 % balance columns on lastpage
 % better than \flushend according to
 % https://texfaq.org/FAQ-balance
@@ -121,19 +121,19 @@ The \emph{simulated satellite} 1-minute results are identical to the 60-minute \
 
 \begin{figure}[htbp]
 \centerline{\includegraphics[width=9cm]{NIST_energy_yield.png}}
-\caption{Energy yield for all 3 datasets shows over-prediction relative to 1-minute if time-averaged to 60-minutes. Simulated satellite (inst-avg) has non-zero errors at 30-minute sampling rates and increasing errors for shorter sampling rates. Instantaneous has random errors that cancel out.}
+\caption{Energy yield for all 3 datasets shows over-prediction relative to 1-minute if time-averaged to 60-minutes. Simulated "satellite" (inst-avg) has non-zero errors at 30-minute sampling rates and increasing errors for shorter sampling rates. Instantaneous has random errors that cancel out.}
 \label{fig:NIST-energy-yield}
 \end{figure}
 
 \begin{figure}[htbp]
 \centerline{\includegraphics[width=9cm]{NIST_clipping_loss.png}}
-\caption{Clipping losses for all 3 datasets shows under-prediction relative to 1-minute if time-averaged to 60-minutes. Simulated satellite (inst-avg) has non-zero errors at 30-minute sampling rate and increasing errors for shorter sampling rates. Instantaneous has random errors that cancel out.}
+\caption{Clipping losses for all 3 datasets shows under-prediction relative to 1-minute if time-averaged to 60-minutes. Simulated "satellite" (inst-avg) has non-zero errors at 30-minute sampling rate and increasing errors for shorter sampling rates. Instantaneous has random errors that cancel out.}
 \label{fig:NIST-clipping-loss}
 \end{figure}
 
 \begin{figure}[htbp]
 \centerline{\includegraphics[width=9cm]{NIST_POA.png}}
-\caption{POA for all 3 datasets shows significantly smaller errors compared to energy yield, implying that clipping errors dominate modeling errors due to hourly input.}
+\caption{POA for all 3 datasets shows significantly smaller errors compared to energy yield, implying that clipping errors dominate modeling errors due to hourly input for this particular scenario with DC/AC of 1.5. For lower DC/AC ratio, clipping errors will dominate less, and POA may become more significant.}
 \label{fig:NIST-POA}
 \end{figure}
 
@@ -142,7 +142,7 @@ Clipping losses for all 3 datasets are shown in Fig.~\ref{fig:NIST-clipping-loss
 The POA, shown Fig.~\ref{fig:NIST-POA}, is also over-predicted when using hourly time-averaged inputs relative to 1-minute. However, the POA error is only 0.4\%, significantly less than the modeling error in energy yield. Therefore, we observe that clipping errors dominate the hourly modeling error, for this particular scenario with a DC/AC ratio of 1.5. For a lower DC/AC ratio, clipping errors will play a smaller role in energy yield, and POA may become more significant.
 
 \subsection{Analysis of Generic Array with SURFRAD}
-Annual AC energy predicted for the generic array with pvlib python for each of the 15 datasets for each of the 7 SURFRAD stations are shown in Fig.~\ref{fig:bon2010}, \ref{fig:dra2011}, \ref{fig:fpk2009}, \ref{fig:gwn2012}, \ref{fig:psu2010}, \ref{fig:sxf2009}, \& \ref{fig:tbl2010}. The annual AC energy at 1-minute and hourly averages as well as the modeling errors for hourly averaged input and for satellite simulated with 30-minute sampling rate both relative to 1-minute are summarized in Table  \ref{table:SURFRAD-summary} for the first year.
+Annual modeling errors predicted for the generic array with pvlib python for each of the 15 datasets for each of the 7 SURFRAD stations are shown in Fig.~\ref{fig:bon2010}, \ref{fig:dra2011}, \ref{fig:fpk2009}, \ref{fig:gwn2012}, \ref{fig:psu2010}, \ref{fig:sxf2009}, \& \ref{fig:tbl2010}. The annual modeling errors for hourly averaged input and for simulated "satellite" with 30-minute sampling rate both relative to 1-minute are summarized in Table  \ref{table:SURFRAD-summary} for all years.
 
 \begin{table}[htbp]
 \caption{Modeling Errors for SURFRAD Generic Arrays with pvlib}
@@ -166,8 +166,6 @@ summary& 44& 1.9\% & 1.0\% & 51\% \\
 \label{table:SURFRAD-summary}
 \end{center}
 \end{table}
-
-The largest modeling errors are at Boulder, CO, for both hourly averaged and simulated satellite at 30-minute sampling rate. Desert Rock, NV, which as the highest annual AC energy output has the lowest modeling errors, but they are still non-zero. Goodwin Creek, MS, has the second lowest modeling errors yet its annual AC production is similar to Boulder, CO. The lowest annual AC output is at Penn State, PA, and it has the 3rd largest modeling error. On average error of the simulated satellite data sampled at 30-minutes, is about half of error of the hourly averages compared to the 1-minute data.
 
 \begin{figure}[htbp]
 \centerline{\includegraphics[width=9cm]{analysis/bon_all.png}}
@@ -211,12 +209,14 @@ The largest modeling errors are at Boulder, CO, for both hourly averaged and sim
 \label{fig:tbl2010}
 \end{figure}
 
+The largest modeling errors are at Boulder, CO, for both hourly averaged and simulated "satellite" at 30-minute sampling rate. Desert Rock, NV, which has the highest annual AC energy output has the lowest modeling errors, which may be affected more by POA errors than clipping errors due to high irradiance and clear skies. Desert Rock, NV, also has negative modeling errors for instantaneous input sampled every 60-minutes, which indicates a one-sided distribution due to a lack of solar variability. Fort Peck, MT, showed both relatively high modeling errors for hourly average input and slightly negative modeling error for instantaneous input sampled every 60-minutes, indicating a mixture of cloudy and clear skies. Goodwin Creek, MS, has the second lowest modeling errors yet its annual AC production is similar to Boulder, CO, but only one year was studied, so it may be an outlier. The lowest annual AC output is at Penn State, PA, and it has the 2nd largest modeling error. Bondville, IL, and Sioux Falls, SD, both have fairly large modeling errors similar to Fort Peck, MT. On average, the modeling error of the simulated "satellite" data sampled every 30-minutes, is half that of the hourly averaged input.
+
 \section{Conclusions}
 Accurate predictions of energy output are important for decreasing the cost of capital for PV systems, but reports of under-performance for the past few years could damage investor confidence. Modeling errors have been observed when using hourly input data for sites with high solar variability and DC/AC greater than one. However, energy assessments use hourly input from satellite data averaged from coarsely sampled instantaneous measurements with random hourly errors that appear to reduce these modeling errors. We examined the effect of sampling rate on modeling errors by simulating irradiance data from high frequency ground measurements at the NIST ground array and predicting energy output using SolarFarmer. We repeated this analysis using inputs from the 7 SURFRAD stations and predicted energy output using pvlib python. We observed modeling errors for simulated irradiance input sampled every 30-minutes or shorter averaged hourly as a proxy for satellite, but ignoring spatial effects, and the errors increased for shorter sampling rates. We also observed that when DC/AC ratio is 1.3 or more, clipping errors dominated over other sources like POA except at sites with high annual energy output. Therefore, we recommend applying an hourly modeling correction whenever hourly input is used. On average we found this correction can be halved when using satellite data.
 
+\balance
 \bibliographystyle{IEEEtran}
 % argument is your BibTeX string definitions and bibliography database(s)
 \bibliography{IEEEabrv,bibliography}
-%\balance
 
 \end{document}
