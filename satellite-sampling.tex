@@ -46,10 +46,10 @@ Accurate solar energy assessments are important for lowering the cost of capital
 \section{Methods}
 
 \subsection{NIST Ground Array Configuration}
-For the first part of this study, we used the NIST ground array, a fixed-tilt 260-kW PV system \cite{Boyd2017,Boyd2017a,Boyd2017b}, as the base system and varied the inverter loading ratio by adding additional DC capacity with the same pitch and racking as the existing rows. A weather station at the site collects inputs at 1-minute frequency, allowing simulation of irradiance data at any sampling rate. We used SolarFarmer \cite{solarfarmer2018} to simulate a fictitious version of the NIST ground array with a DC/AC ratio of 1.5, because SolarFarmer can use inputs at any frequency.
+For the first part of this study, we used the NIST ground array, a fixed-tilt 260-kW PV system \cite{Boyd2017,Boyd2017a,Boyd2017b}, as the base system and varied the inverter loading ratio by adding additional DC capacity with the same pitch and racking as the existing rows. A weather station at the site collects inputs at 1-minute frequency, allowing simulation of irradiance data at any sampling rate. We used SolarFarmer \cite{solarfarmer2018} to simulate a fictitious version of the NIST ground array with a DC/AC ratio of 1.5, because SolarFarmer can use inputs at any frequency. Output from SolarFarmer has the same frequency as the input, and both are assumed to represent the average during that interval. For example, if the input is every 5-minutes, then the output is also every 5-minutes and assumed to be constant during that 5-minute interval.
 
 \subsection{Generic Array Configuration for SURFRAD}
-For the second part of this study, we simulated a system consisting of strings of generic 300-W mono-crystalline silicon modules (Canadian Solar CS6X-300M) connected to a single generic 250kW central inverter (SMA America SC250U (480V)), such that the DC/AC ratio was 1.3. The module and inverter parameters were sourced from the NREL System Advisor Model (SAM) libraries \cite{Freeman2018}. There are 7 SURFRAD \cite{Augustine2000} stations across the United States that provide 1-minute average input since 2009. Compared to hourly irradiance data, 1-minute is relatively instantaneous. Therefore, we refer to the SURFRAD 1-minute averages as instantaneous for the remainder of this paper. The instantaneous data was used with pvlib python \cite{pvlib2018} to predict plane of array (POA) irradiance components, effective irradiance, cell temperature, DC power, and AC output. The method was based on a previous study \cite{9519024} with minor differences. SURFRAD data was filtered for data quality, visually inspected, and problematic rows were dropped from the dataset. Then, only years containing at least 98\% of global horizontal irradiance (GHI), diffuse horizontal irradiance (DHI), direct normal irradiance (DNI), air temperature, wind speed, relative humidity, pressure, and solar zenith were considered. The SURFRAD irradiance components were checked for self consistency.
+For the second part of this study, we simulated a system consisting of strings of generic 300-W mono-crystalline silicon modules (Canadian Solar CS6X-300M) connected to a single generic 250kW central inverter (SMA America SC250U (480V)), such that the DC/AC ratio was 1.3. The module and inverter parameters were sourced from the NREL System Advisor Model (SAM) libraries \cite{Freeman2018}. There are 7 SURFRAD \cite{Augustine2000} stations across the United States that provide 1-minute average input since 2009. Compared to hourly irradiance data, 1-minute is relatively instantaneous. Therefore, we refer to the SURFRAD 1-minute averages as instantaneous for the remainder of this paper. The instantaneous data was used with pvlib python \cite{pvlib2018} to predict plane of array (POA) irradiance components, effective irradiance, cell temperature, DC power, and AC output. The method was based on a previous study \cite{9519024} with minor differences. SURFRAD data was filtered for data quality, visually inspected, and problematic rows were dropped from the dataset. Then, only years containing at least 98\% of global horizontal irradiance (GHI), diffuse horizontal irradiance (DHI), direct normal irradiance (DNI), air temperature, wind speed, relative humidity, pressure, and solar zenith were considered. The SURFRAD irradiance components were checked for self consistency. The analysis is on GitHub here: https://github.com/mikofski/pvsc49-satellite-sampling.
 
 Wind speed measurements were available so the thermal coefficients were changed to $U_c=25, U_v=1.2$, and a moving average with a 10-minute window was used to smooth unrealistic high frequency cell temperatures \cite{9095219}. Finally the Sandia National Laboratory performance model for grid-connection PV inverters \cite{King2007} was used to calculate AC power ($E_{grid}$).
 
@@ -80,32 +80,32 @@ This study uses a method similar to others to simulate low frequency irradiance 
 \label{section:results}
 
 \subsection{Analysis of NIST Ground Array}
-The energy yield, POA, and clipping losses for each of the 15 SolarFarmer predictions for the NIST ground array are shown in Table~\ref{table:results-summary}. A plot of the energy yield in Fig.~\ref{fig:NIST-energy-yield} shows the time-averaged, instantaneous, and simulated satellite results. The 1-minute time-averaged measurements correctly account for rapid ramp rates in the solar resource when predicting energy yield, POA, and clipping loss. However, as the time-averaging interval increases to hourly, the energy yield is over-predicted by 2.7\% and the clipping loss is under-predicted by 1.1\% relative to the 1-minute measurements.
+The annual energy yield, POA, and clipping losses for each of the 15 SolarFarmer predictions for the NIST ground array are shown in Table~\ref{table:results-summary}. Clipping loss is defined as the fraction of energy clipped relative to the output if there were no clipping, where clipping refers to power that is not generated because it is greater than the inverter rating. Depending on the dataset, the 2nd column shows either the sampling rate or the averaging interval. The rows in the first section show the results from the \emph{time-averaged} dataset in which 1-minute input is time averaged at different intervals. The rows in the second section show results from the \emph{instantaneous} dataset in which input is sampled at different rates. The rows in the third section show results from the \emph{simulated satellite} dataset in which instantaneous data was averaged to hourly. Note that the 1-minute \emph{time-averaged} results are identical to the 1-minute \emph{instantaneous} results, because the NIST resource data resolution is 1-minute. Also note that the 60-minute \emph{instantaneous} results are identical to the 60-minute \emph{simulated satellite} results because both represent an hourly sampling rate. Finally, the 60-minute \emph{time-averaged} results are the same as the 1-minute \emph{simulated satellite} results because both take samples every minute and average hourly.
 
 \begin{table}[htbp]
-\caption{Summary of SolarFarmer Results for NIST Ground Array}
+\caption{SolarFarmer Annual Results for NIST Ground Array}
 \begin{center}
 \begin{tabular}{|c|c|c|c|c|}
 \hline
-\textbf{Dataset} & \textbf{\textit{Interval}}& \textbf{\textit{Energy Yield}}& \textbf{\textit{POA}}& \textbf{\textit{Clipping}} \\
+\textbf{Dataset} & \textbf{\textit{Rate | Interval}}& \textbf{\textit{Energy Yield}}& \textbf{\textit{POA}}& \textbf{\textit{Clipping}} \\
                  & \textit{minutes}& \textit{kWh/kWp}& \textit{kWh/m\textsuperscript{2}}& \textbf{\textit{Loss}} \\
 \hline
              &  1& 1286.3& 1667.4& -4.6\% \\
-             &  5& 1298.3& 1669.2& -4.2\% \\
-time-averaged& 15& 1308.7& 1671  & -3.9\% \\
-             & 30& 1314.8& 1672  & -3.8\% \\
+time-        &  5& 1298.3& 1669.2& -4.2\% \\
+averaged     & 15& 1308.7& 1671  & -3.9\% \\
+(interval)   & 30& 1314.8& 1672  & -3.8\% \\
              & 60& 1320.8& 1673.5& -3.5\% \\
 \hline
              &  1& 1286.3& 1667.4& -4.6\% \\
-             &  5& 1285.9& 1667.7& -4.6\% \\
-instantaneous& 15& 1285.4& 1668.2& -4.6\% \\
+instant      &  5& 1285.9& 1667.7& -4.6\% \\
+(rate)       & 15& 1285.4& 1668.2& -4.6\% \\
              & 30& 1285.6& 1665.1& -4.5\% \\
              & 60& 1284  & 1663.1& -4.5\% \\
 \hline
              &  1& 1320.8& 1673.5& -3.5\% \\
 simulated-   &  5& 1319.3& 1673.6& -3.6\% \\
 satellite    & 15& 1315  & 1673.8& -3.7\% \\
-             & 30& 1304.9& 1669  & -3.9\% \\
+(rate)       & 30& 1304.9& 1669  & -3.9\% \\
              & 60& 1284  & 1663.1& -4.5\% \\
 \hline
 \end{tabular}
@@ -113,9 +113,11 @@ satellite    & 15& 1315  & 1673.8& -3.7\% \\
 \end{center}
 \end{table}
 
-The instantaneous results are also shown in Fig.~\ref{fig:NIST-energy-yield}. The 1-minute results are identical to the 1-minute time-averaged, because the measurement resolution is every minute. As input data is sampled at lower frequency (longer sampling rates), random errors occur in the input data and cancel out the modeling error.
+The 1-minute time-averaged input, shown in the first row, correctly account for rapid ramp rates in the solar resource when predicting energy yield, POA, and clipping loss. As the time-averaging interval increases to hourly, the energy yield is over-predicted by 2.7\%, the clipping loss is under-predicted by 1.1\% relative to the 1-minute measurements, and the POA is also over-predicted by 0.4\%. The data in the last 3 columns of Table~\ref{table:results-summary} are plotted in Fig.~\ref{fig:NIST-energy-yield}, ~\ref{fig:NIST-clipping-loss}, \& ~\ref{fig:NIST-POA}, to help visualize how the model output changes versus sampling rate or averaging interval of the input from each dataset.
 
-The simulated satellite results are also shown in Fig.~\ref{fig:NIST-energy-yield}. The 1-minute results are identical to the 60-minute time-averaged, because they both show 1-minute measurements averaged hourly. As input data is sampled at increasing frequency (shorter sampling rates), the modeling errors become more apparent. Because all of the simulated satellite input is hourly, this trend is similar but opposite to the increase in modeling errors observed in time-averaged input as the interval is increased. The inflection point seems to be around 30-minutes. At sampling times longer than 30-minutes, random errors occur in the input data and cancel out the modeling error, similar to observations of the instantaneous input. However, we observe that even for input data sampled every 30-minutes, similar to the sampling rate of NSRDB TMY3 files, there is still non-zero modeling error.
+Fig.~\ref{fig:NIST-energy-yield} shows a plot of the time-averaged, instantaneous, and simulated "satellite" energy yield. The 1-minute \emph{time-averaged} input correctly accounts for rapid ramp rates in solar resource. As the input is time-averaged over longer intervals, the energy yield is over-predicted, with the largest changes occurring from 1-minute to 15-minute time-averaging intervals. The 1-minute \emph{time-averaged} results are identical to the 1-minute \emph{instantaneous}, because the NIST resource data resolution is 1-minute. As input data is sampled at lower frequency (longer sampling rates), random errors occur in the input data and cancel out the modeling error. For example, instantaneous sampling every 30 minutes yields input randomly greater or less than the average during the same time-interval.
+
+The \emph{simulated satellite} 1-minute results are identical to the 60-minute \emph{time-averaged}, because they both show 1-minute measurements averaged hourly. Therefore, as input data is sampled at increasing frequency approaching 1-minute sampling and averaged hourly, the modeling errors increase and approach the same as 60-minute \emph{time-averaged}. All of the \emph{simulated satellite} input is averaged hourly, so this trend is similar but opposite to the increase in modeling errors observed in \emph{time-averaged} input as the interval is increased. The inflection point seems to be around 30-minutes. At sampling times longer than 30-minutes, random errors occur in the input data and cancel out the modeling error, similar to observations of the \emph{instantaneous} results. However, we observe that even for input data sampled every 30-minutes, similar to the sampling rate of NSRDB TMY3 files, there is still non-zero modeling error.
 
 \begin{figure}[htbp]
 \centerline{\includegraphics[width=9cm]{NIST_energy_yield.png}}
@@ -135,9 +137,9 @@ The simulated satellite results are also shown in Fig.~\ref{fig:NIST-energy-yiel
 \label{fig:NIST-POA}
 \end{figure}
 
-Clipping losses for all 3 datasets are shown in Fig.~\ref{fig:NIST-clipping-loss}. Clipping losses are the percentage of AC power that is lost due to clipping. Do not compare modeling error between simulations based on clipping loss, because the delta in clipping losses is not equal to the modeling error! For example, the modeling error due to time-averaged hourly input was 2.7\% while the clipping losses only changed by 1.1\%. The modeling error due to hourly inputs is only defined by the change in AC power relative to 1-minute input. However, the clipping loss is useful in determining that clipping errors are the cause of the over-prediction in energy yield.
+Clipping losses for all 3 datasets are shown in Fig.~\ref{fig:NIST-clipping-loss}. Clipping losses are the percentage of AC power that is lost due to clipping. Do not compare modeling error between simulations based on clipping loss, because the delta in clipping losses is not equal to the modeling error! For example, the modeling error due to time-averaged hourly input was 2.7\% while the clipping losses only changed by 1.1\%. The modeling error due to hourly inputs is only defined by the change in AC power relative to 1-minute input. However, the clipping loss is useful in determining that clipping errors are the cause of the over-prediction in energy yield, for this particular scenario with DC/AC of 1.5. Lower DC/AC will have lower clipping losses, and therefore less modeling error due to clipping errors.
 
-The POA, shown Fig.~\ref{fig:NIST-POA}, is also over-predicted when using hourly time-averaged inputs relative to 1-minute. However, the POA error is only 0.4\%, significantly less than the modeling error in energy yield. Therefore, we observe that clipping errors dominate the hourly modeling error.
+The POA, shown Fig.~\ref{fig:NIST-POA}, is also over-predicted when using hourly time-averaged inputs relative to 1-minute. However, the POA error is only 0.4\%, significantly less than the modeling error in energy yield. Therefore, we observe that clipping errors dominate the hourly modeling error, for this particular scenario with a DC/AC ratio of 1.5. For a lower DC/AC ratio, clipping errors will play a smaller role in energy yield, and POA may become more significant.
 
 \subsection{Analysis of Generic Array with SURFRAD}
 Annual AC energy predicted for the generic array with pvlib python for each of the 15 datasets for each of the 7 SURFRAD stations are shown in Fig.~\ref{fig:bon2010}, \ref{fig:dra2011}, \ref{fig:fpk2009}, \ref{fig:gwn2012}, \ref{fig:psu2010}, \ref{fig:sxf2009}, \& \ref{fig:tbl2010}. The annual AC energy at 1-minute and hourly averages as well as the modeling errors for hourly averaged input and for satellite simulated with 30-minute sampling rate both relative to 1-minute are summarized in Table  \ref{table:SURFRAD-summary} for the first year.
