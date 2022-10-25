@@ -145,21 +145,22 @@ The POA, shown Fig.~\ref{fig:NIST-POA}, is also over-predicted when using hourly
 Annual AC energy predicted for the generic array with pvlib python for each of the 15 datasets for each of the 7 SURFRAD stations are shown in Fig.~\ref{fig:bon2010}, \ref{fig:dra2011}, \ref{fig:fpk2009}, \ref{fig:gwn2012}, \ref{fig:psu2010}, \ref{fig:sxf2009}, \& \ref{fig:tbl2010}. The annual AC energy at 1-minute and hourly averages as well as the modeling errors for hourly averaged input and for satellite simulated with 30-minute sampling rate both relative to 1-minute are summarized in Table  \ref{table:SURFRAD-summary} for the first year.
 
 \begin{table}[htbp]
-\caption{Summary of Modeling Errors for SURFRAD Generic Arrays with pvlib python}
+\caption{Modeling Errors for SURFRAD Generic Arrays with pvlib}
 \begin{center}
-\begin{tabular}{|c|c|c|c|c|c|}
+\begin{tabular}{|c|c|c|c|c|}
 \hline
-\textbf{Station-}& \textbf{\textit{Egrid}}& \textbf{\textit{Egrid}}& \textbf{\textit{Model}}& \textbf{\textit{Egrid}}& \textbf{\textit{Model}} \\
-              \textbf{Year}& \textbf{\textit{1m-inst}}& \textbf{\textit{60m-avg}}& \textbf{\textit{Error}}& \textbf{\textit{30m-sat}}& \textbf{\textit{Error}} \\
-                 & \textit{MWh}& \textit{MWh}& \textit{60m-avg}& \textit{MWh}& \textit{30m-sat} \\
+\textbf{Station}& \textbf{\textit{Years}}& \textbf{\textit{Model Error}}& \textbf{\textit{Model Error}}& \textbf{\textit{Fraction}} \\
+                &                        & \textbf{\textit{60-min avg}} & \textbf{\textit{30-min sat}} &                                \\
 \hline
-bon-2010& 589& 599& 1.7\%&594& 0.9\% \\
-dra-2011& 795& 802& 0.8\%&795& 0.03\% \\
-fpk-2009& 576& 588& 2.2\%&584& 1.3\% \\
-gwn-2012& 621& 629& 1.3\%&623& 0.3\% \\
-psu-2010& 518& 528& 2.0\%&522& 0.7\% \\
-sxf-2009& 559& 568& 1.6\%&564& 0.8\% \\
-tbl-2012& 632& 648& 2.6\%&643& 1.7\% \\
+bon  & 8 & 2.1\% & 1.2\% & 59\% \\
+dra  & 9 & 0.95\%& 0.29\%& 30\% \\
+fpk  & 6 & 1.9\% & 1.0\% & 53\% \\
+gwn  & 1 & 1.3\% & 0.32\%& 24\% \\
+psu  & 5 & 2.4\% & 1.2\% & 51\% \\
+sxf  & 8 & 1.8\% & 1.1\% & 61\% \\
+tbl  & 7 & 2.6\% & 2.0\% & 77\% \\
+\hline
+summary& 44& 1.9\% & 1.0\% & 51\% \\
 \hline
 \end{tabular}
 \label{table:SURFRAD-summary}
@@ -211,7 +212,7 @@ The largest modeling errors are at Boulder, CO, for both hourly averaged and sim
 \end{figure}
 
 \section{Conclusions}
-Accurate predictions of energy output are important for decreasing the cost of capital for PV systems, but reports of under-performance for the past few years could damage investor confidence. Modeling errors have been observed when using hourly input data for sites with high solar variability and DC/AC greater than one. However, satellite data is averaged from coarsely sampled instantaneous measurements with random hourly errors that appear to reduce these modeling errors. We examined the effect of sampling rate on modeling errors by simulating satellite data from high frequency ground measurements at the NIST ground array and predicting energy output using SolarFarmer. We repeated this analysis using inputs from the 7 SURFRAD stations and predicted energy output using pvlib python. We observed modeling errors for simulated satellite input sampled every 30-minutes or shorter, and the errors increased for shorter sampling rates. We also observed that clipping errors dominated over other sources like POA except at sites with high annual energy output. Therefore, we recommend applying an hourly modeling correction whenever hourly input is used. On average we found this correction can be halved when using satellite data.
+Accurate predictions of energy output are important for decreasing the cost of capital for PV systems, but reports of under-performance for the past few years could damage investor confidence. Modeling errors have been observed when using hourly input data for sites with high solar variability and DC/AC greater than one. However, energy assessments use hourly input from satellite data averaged from coarsely sampled instantaneous measurements with random hourly errors that appear to reduce these modeling errors. We examined the effect of sampling rate on modeling errors by simulating irradiance data from high frequency ground measurements at the NIST ground array and predicting energy output using SolarFarmer. We repeated this analysis using inputs from the 7 SURFRAD stations and predicted energy output using pvlib python. We observed modeling errors for simulated irradiance input sampled every 30-minutes or shorter averaged hourly as a proxy for satellite, but ignoring spatial effects, and the errors increased for shorter sampling rates. We also observed that when DC/AC ratio is above 1.3, clipping errors dominated over other sources like POA except at sites with high annual energy output. Therefore, we recommend applying an hourly modeling correction whenever hourly input is used. On average we found this correction can be halved when using satellite data.
 
 \bibliographystyle{IEEEtran}
 % argument is your BibTeX string definitions and bibliography database(s)
