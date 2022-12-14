@@ -6,3 +6,4 @@
 *.pdf
 *.synctex.gz
 .ipynb_checkpoints
+private
