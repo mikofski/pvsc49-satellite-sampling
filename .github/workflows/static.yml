@@ -25,11 +25,15 @@ jobs:
     - name: build site
       run: |
         pdflatex satellite-sampling.tex
-        bibtex satellite-sampling.aux
+        bibtex satellite-sampling
         pdflatex satellite-sampling.tex
+        bibtex satellite-sampling
+        pdflatex satellite-sampling.tex
+        mkdir docs
+        cp satellite-sampling.* docs/
 
     - name: GitHub Pages action
       uses: peaceiris/actions-gh-pages@v3.9.0
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./satellite-sampling.pdf
+        publish_dir: docs
