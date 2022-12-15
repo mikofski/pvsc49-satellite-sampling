@@ -89,6 +89,17 @@ E_e = \frac{E_\mathrm{grid,clipped,dataset}}{E_\mathrm{grid,clipped,1\text{-}min
 
 That is, the modeling error ($E_e$) is quoted relative to the best fidelity result as given by Eqn.~\ref{eq:1}, and the clipping loss ($\mathit{CL}$) is relative to the unclipped output of the same dataset as given by Eqn.~\ref{eq:2}.
 
+\subsection{Temporal Adjustment}
+Previous work by DNV and others have derived and validated hourly modeling corrections ($\mathit{HMC}$) \cite{Cormode2019,Bradford2020,Kharait2020,Anderson2020,Parikh2021} applied to energy assessments estimated from hourly inputs time-averaged from high-frequency irradiance measurements. We derive a temporal adjustment ($K_{temporal}$) to account for hourly averaged inputs derived from coarsely sampled irradiance data, such as satellite data. As shown in Eqn.~\ref{eq:3}, $K_{temporal}$ is evaluated from the ratio of modeling errors using hourly averaged inputs derived from coarsely sampled irradiance data ($E_e\left(\textrm{every 30-min, avg-hourly}\right)$) versus hourly inputs time-averaged from high-frequency irradiance measurements ($E_e\left(\textrm{every 1-min, avg-hourly}\right)$). We recommend analysts apply $K_{temporal}$ to $\mathit{HMC}$, as in Eqn.~\ref{eq:4}, to account for the temporal effect of sampling rate on modeling error.
+
+\begin{equation} \label{eq:3}
+K_{temporal} = \frac{E_e\left(\textrm{every 30-min, avg-hourly}\right)}{E_e\left(\textrm{every 1-min, avg-hourly}\right)}
+\end{equation}
+
+\begin{equation} \label{eq:4}
+\mathit{HMC}_{adjusted} = K_{temporal} \mathit{HMC}
+\end{equation}
+
 \section{Results}
 \label{section:results}
 
@@ -155,7 +166,7 @@ Clipping losses for all 3 datasets are shown in Fig.~\ref{fig:NIST-clipping-loss
 The POA irradiance, shown Fig.~\ref{fig:NIST-POA}, is also over-predicted when using hourly time-averaged inputs relative to 1-minute. However, the POA irradiance error is only 0.4\%, significantly less than the modeling error in energy yield. Therefore, we observe that clipping errors dominate the hourly modeling error, for this particular scenario with a DC/AC ratio of 1.5. For a lower DC/AC ratio, clipping errors will play a smaller role in energy yield, and POA irradiance errors may become more significant.
 
 \subsection{Analysis of Generic Array with SURFRAD}
-Annual modeling errors predicted for the generic array with pvlib python for each of the 15 datasets for each of the 7 SURFRAD stations are shown in Fig.~\ref{fig:bon2010}, \ref{fig:dra2011}, \ref{fig:fpk2009}, \ref{fig:gwn2012}, \ref{fig:psu2010}, \ref{fig:sxf2009}, \& \ref{fig:tbl2010}. The annual modeling errors for hourly averaged input and for simulated ``satellite'' with 30-minute sampling rate both relative to 1-minute are summarized in Table \ref{table:SURFRAD-summary} for all years.
+Annual modeling errors predicted for the generic array with pvlib python for each of the 15 datasets for each of the 7 SURFRAD stations are shown in Fig.~\ref{fig:bon2010}, \ref{fig:dra2011}, \ref{fig:fpk2009}, \ref{fig:gwn2012}, \ref{fig:psu2010}, \ref{fig:sxf2009}, \& \ref{fig:tbl2010}. The annual modeling errors calculated with Eqn.~\ref{eq:1} for hourly averaged input ($E_e\left(\textrm{every 1-min, avg-hourly}\right)$) and for simulated ``satellite'' with 30-minute sampling rate ($E_e\left(\textrm{every 30-min, avg-hourly}\right)$) both relative to 1-minute are summarized in Table \ref{table:SURFRAD-summary} for all years. From Eqn.~\ref{eq:3}, the temporal adjustment ($K_{temporal}$) is the ratio of the modeling errors.
 
 \begin{table}[htbp]
 \caption{Modeling Errors for SURFRAD Generic Arrays with pvlib}
@@ -163,8 +174,8 @@ Annual modeling errors predicted for the generic array with pvlib python for eac
 \begin{tabular}{|c|c|c|c|c|}
 \hline
 & & \multicolumn{2}{c|}{\textbf{\textit{Model Errors}}} & \\\cline{3-4}
-\textbf{Station}& \textbf{\textit{Years}}& \textbf{\textit{60-min}} & \textbf{\textit{30-min}} & \textbf{\textit{Fraction}} \\
-& & \textbf{\textit{averaged}} & \textbf{\textit{``satellite''}} &                                \\
+\textbf{Station}& \textbf{\textit{Years}}& \textbf{\textit{60-min}} & \textbf{\textit{30-min}} & \textbf{\textit{Ratio}} \\
+& & \textbf{\textit{averaged}} & \textbf{\textit{``satellite''}} & \\
 \hline
 Bondville, IL      & 8 & 2.1\% & 1.2\% & 59\% \\
 Desert Rock, NV    & 9 & 0.95\%& 0.29\%& 30\% \\
@@ -226,11 +237,11 @@ Summary& 44& 1.9\% & 1.0\% & 51\% \\
 The largest modeling errors are at Boulder, CO, for both hourly averaged and simulated ``satellite'' at 30-minute sampling rate. Desert Rock, NV, which has the highest annual AC energy output, has the lowest modeling errors, which may be affected more by POA irradiance errors than clipping errors due to high irradiance and clear skies. Desert Rock, NV, also has negative modeling errors for instantaneous input sampled every 60-minutes (high-fidelity estimate greater than hourly estimate), which indicates a one-sided distribution at or below the hourly average irradiance, possibly indicating less solar variability and more clear skies. Fort Peck, MT, showed both relatively high modeling errors for hourly average input and slightly negative modeling error for instantaneous input sampled every 60-minutes, perhaps indicating a mixture of cloudy and clear skies. Goodwin Creek, MS, has the second lowest modeling errors yet its annual AC production is similar to Boulder, CO, but only one year was studied, so it may be an outlier. The lowest annual AC output is at Penn State, PA, and it has the 2nd largest modeling error. Bondville, IL, and Sioux Falls, SD, both have fairly large modeling errors similar to Fort Peck, MT. The summary in \ref{table:SURFRAD-summary} shows that on average, the modeling error of the simulated ``satellite'' data sampled every 30-minutes, is half that of the hourly averaged input.
 
 \section{Conclusions}
-Accurate predictions of energy output are important for decreasing the cost of capital for PV systems, but reports of under-performance for the past few years could damage investor confidence. Modeling errors have been observed when using hourly input data for sites with high solar variability and DC/AC greater than one. However, energy assessments typically use hourly irradiance input derived from coarsely sampled instantaneous satellite measurements with random hourly errors that would reduce the modeling error due to clipping compared to hourly values that are time-averaged from multiple high-frequency samples. We examined the effect of sampling rate on modeling errors by time-averaging irradiance data from high frequency ground measurements at the NIST ground array and predicting energy output using SolarFarmer. We repeated this analysis using inputs from the 7 SURFRAD stations and predicted energy output using pvlib python. We observed modeling errors for hourly input averaged from irradiance sampled every 30-minutes or shorter as a proxy for satellite, but ignoring spatial effects, and the errors increased for shorter sampling rates. We also observed that when DC/AC ratio is 1.3 or more, clipping errors dominated over other sources like POA irradiance except at sites with high annual energy output. Using high frequency irradiance input at all modeling stages would be ideal, but in practice solar resource data has been pre-averaged hourly, introducing the modeling errors we and others have observed. Therefore, we recommend applying an hourly modeling correction whenever hourly input is used. On average we found this correction can be halved when using satellite data.
+Accurate predictions of energy output are important for decreasing the cost of capital for PV systems, but reports of under-performance for the past few years could damage investor confidence. Modeling errors have been observed when using hourly input data for sites with high solar variability and DC/AC greater than one. However, energy assessments typically use hourly irradiance input derived from coarsely sampled instantaneous satellite measurements with random hourly errors that would reduce the modeling error due to clipping compared to hourly values that are time-averaged from multiple high-frequency samples. We examined the effect of sampling rate on modeling errors by time-averaging irradiance data from high frequency ground measurements at the NIST ground array and predicting energy output using SolarFarmer. We repeated this analysis using inputs from the 7 SURFRAD stations and predicted energy output using pvlib python. We observed modeling errors for hourly input averaged from irradiance sampled every 30-minutes or shorter as a proxy for satellite, but ignoring spatial effects, and the errors increased for shorter sampling rates. We also observed that when DC/AC ratio is 1.3 or more, clipping errors dominated over other sources like POA irradiance errors except at sites with high annual energy output. Using high frequency irradiance input at all modeling stages would be ideal, but in practice solar resource data has been pre-averaged hourly, introducing the modeling errors we and others have observed. Therefore, we recommend applying an hourly modeling correction ($\mathit{HMC}$) whenever hourly input is used. We also recommend applying a temporal adjustment ($K_{temporal}$) to account for the decrease in modeling error observed when using hourly averaged coarsely sampled input like satellite data. On average we found $K_{temporal}$ of about 50\%, approximately halving $\mathit{HMC}$ according to Eqn.~\ref{eq:4}, when using satellite data.
 
-\balance
+% \balance
 \bibliographystyle{IEEEtran}
 % argument is your BibTeX string definitions and bibliography database(s)
 \bibliography{IEEEabrv,bibliography}
-
+\balance
 \end{document}
