@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2022.12.15)  15 DEC 2022 00:34
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2022.12.15)  15 DEC 2022 06:36
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -566,67 +566,72 @@ File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
 
 
 ]
-<sampling-diagram.png, id=95, 481.04718pt x 93.34875pt>
+<sampling-diagram.png, id=99, 481.04718pt x 93.34875pt>
 File: sampling-diagram.png Graphic file (type png)
 <use sampling-diagram.png>
 Package pdftex.def Info: sampling-diagram.png  used on input line 74.
 (pdftex.def)             Requested size: 256.0748pt x 49.69252pt.
  [2 <./sampling-diagram.png>]
-<NIST_energy_yield.png, id=124, 362.007pt x 217.467pt>
+<NIST_energy_yield.png, id=132, 362.007pt x 217.467pt>
 File: NIST_energy_yield.png Graphic file (type png)
 <use NIST_energy_yield.png>
-Package pdftex.def Info: NIST_energy_yield.png  used on input line 136.
+Package pdftex.def Info: NIST_energy_yield.png  used on input line 147.
 (pdftex.def)             Requested size: 256.0748pt x 153.83188pt.
-<NIST_clipping_loss.png, id=126, 362.007pt x 217.467pt>
+<NIST_clipping_loss.png, id=134, 362.007pt x 217.467pt>
 File: NIST_clipping_loss.png Graphic file (type png)
 <use NIST_clipping_loss.png>
-Package pdftex.def Info: NIST_clipping_loss.png  used on input line 142.
+Package pdftex.def Info: NIST_clipping_loss.png  used on input line 153.
 (pdftex.def)             Requested size: 256.0748pt x 153.83188pt.
-<NIST_POA.png, id=127, 361.788pt x 217.467pt>
+<NIST_POA.png, id=135, 361.788pt x 217.467pt>
 File: NIST_POA.png Graphic file (type png)
 <use NIST_POA.png>
-Package pdftex.def Info: NIST_POA.png  used on input line 148.
+Package pdftex.def Info: NIST_POA.png  used on input line 159.
 (pdftex.def)             Requested size: 256.0748pt x 153.9248pt.
- [3 <./NIST_energy_yield.png>]
-<analysis/bon_all.png, id=146, 749.80125pt x 516.93124pt>
+ [3]
+Underfull \hbox (badness 2376) in paragraph at lines 169--170
+\T1/ptm/m/n/10 for hourly av-er-aged in-put ($\OML/cmm/m/it/10 E[] []$\T1/ptm/m
+/n/10 )
+ []
+
+<analysis/bon_all.png, id=157, 749.80125pt x 516.93124pt>
 File: analysis/bon_all.png Graphic file (type png)
 <use analysis/bon_all.png>
-Package pdftex.def Info: analysis/bon_all.png  used on input line 185.
+Package pdftex.def Info: analysis/bon_all.png  used on input line 196.
 (pdftex.def)             Requested size: 256.0748pt x 176.54306pt.
-<analysis/dra_all.png, id=147, 749.80125pt x 516.93124pt>
+<analysis/dra_all.png, id=158, 749.80125pt x 516.93124pt>
 File: analysis/dra_all.png Graphic file (type png)
 <use analysis/dra_all.png>
-Package pdftex.def Info: analysis/dra_all.png  used on input line 191.
+Package pdftex.def Info: analysis/dra_all.png  used on input line 202.
 (pdftex.def)             Requested size: 256.0748pt x 176.54306pt.
-<analysis/fpk_all.png, id=148, 749.80125pt x 516.93124pt>
+<analysis/fpk_all.png, id=159, 749.80125pt x 516.93124pt>
 File: analysis/fpk_all.png Graphic file (type png)
 <use analysis/fpk_all.png>
-Package pdftex.def Info: analysis/fpk_all.png  used on input line 197.
+Package pdftex.def Info: analysis/fpk_all.png  used on input line 208.
 (pdftex.def)             Requested size: 256.0748pt x 176.54306pt.
-<analysis/gwn_all.png, id=149, 758.835pt x 516.93124pt>
+<analysis/gwn_all.png, id=160, 758.835pt x 516.93124pt>
 File: analysis/gwn_all.png Graphic file (type png)
 <use analysis/gwn_all.png>
-Package pdftex.def Info: analysis/gwn_all.png  used on input line 203.
+Package pdftex.def Info: analysis/gwn_all.png  used on input line 214.
 (pdftex.def)             Requested size: 256.0748pt x 174.44493pt.
-<analysis/psu_all.png, id=150, 749.80125pt x 516.93124pt>
+<analysis/psu_all.png, id=161, 749.80125pt x 516.93124pt>
 File: analysis/psu_all.png Graphic file (type png)
 <use analysis/psu_all.png>
-Package pdftex.def Info: analysis/psu_all.png  used on input line 209.
+Package pdftex.def Info: analysis/psu_all.png  used on input line 220.
 (pdftex.def)             Requested size: 256.0748pt x 176.54306pt.
-<analysis/sxf_all.png, id=151, 749.80125pt x 516.93124pt>
+<analysis/sxf_all.png, id=162, 749.80125pt x 516.93124pt>
 File: analysis/sxf_all.png Graphic file (type png)
 <use analysis/sxf_all.png>
-Package pdftex.def Info: analysis/sxf_all.png  used on input line 215.
+Package pdftex.def Info: analysis/sxf_all.png  used on input line 226.
 (pdftex.def)             Requested size: 256.0748pt x 176.54306pt.
-<analysis/tbl_all.png, id=152, 740.7675pt x 516.93124pt>
+<analysis/tbl_all.png, id=163, 740.7675pt x 516.93124pt>
 File: analysis/tbl_all.png Graphic file (type png)
 <use analysis/tbl_all.png>
-Package pdftex.def Info: analysis/tbl_all.png  used on input line 221.
+Package pdftex.def Info: analysis/tbl_all.png  used on input line 232.
 (pdftex.def)             Requested size: 256.0748pt x 178.69641pt.
- [4 <./NIST_clipping_loss.png> <./NIST_POA.png> <./analysis/bon_all.png> <./ana
-lysis/dra_all.png>] [5 <./analysis/fpk_all.png> <./analysis/gwn_all.png> <./ana
-lysis/psu_all.png> <./analysis/sxf_all.png>]
-(./satellite-sampling.bbl)
+[4 <./NIST_energy_yield.png> <./NIST_clipping_loss.png> <./NIST_POA.png> <./ana
+lysis/bon_all.png>] [5 <./analysis/dra_all.png> <./analysis/fpk_all.png> <./ana
+lysis/gwn_all.png> <./analysis/psu_all.png>] (./satellite-sampling.bbl [6 <./an
+alysis/sxf_all.png> <./analysis/tbl_all.png>])
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -639,21 +644,21 @@ Before submitting the final camera ready copy, remember to:
  process uses the appropriate paper size.
 
 
-Overfull \vbox (13.74821pt too high) has occurred while \output is active []
+Overfull \vbox (1.73193pt too high) has occurred while \output is active []
 
 
-[6 <./analysis/tbl_all.png>] (./satellite-sampling.aux)
+[7] (./satellite-sampling.aux)
 Package rerunfilecheck Info: File `satellite-sampling.out' has not changed.
-(rerunfilecheck)             Checksum: B7C3170E2ADBD4BD58B5A317A81297AD;1616.
+(rerunfilecheck)             Checksum: AC131CC17B2164D643E814A781C1EB9D;1772.
  ) 
 Here is how much of TeX's memory you used:
- 11651 strings out of 480171
- 181813 string characters out of 5894488
- 511197 words of memory out of 5000000
- 29363 multiletter control sequences out of 15000+600000
+ 11658 strings out of 480171
+ 181885 string characters out of 5894488
+ 498917 words of memory out of 5000000
+ 29366 multiletter control sequences out of 15000+600000
  589953 words of font info for 154 fonts, out of 8000000 for 9000
  59 hyphenation exceptions out of 8191
- 60i,12n,63p,2499b,336s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 60i,12n,63p,2499b,473s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/
@@ -666,10 +671,10 @@ cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti
 are/texlive/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texlive/te
 xmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/
 type1/urw/times/utmri8a.pfb>
-Output written on satellite-sampling.pdf (6 pages, 695917 bytes).
+Output written on satellite-sampling.pdf (7 pages, 701551 bytes).
 PDF statistics:
- 279 PDF objects out of 1000 (max. 8388607)
- 223 compressed objects within 3 object streams
- 53 named destinations out of 1000 (max. 500000)
- 144 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 299 PDF objects out of 1000 (max. 8388607)
+ 242 compressed objects within 3 object streams
+ 57 named destinations out of 1000 (max. 500000)
+ 152 words of extra memory for PDF output out of 10000 (max. 10000000)
 
