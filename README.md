@@ -2,7 +2,7 @@
 `pvsc49-satellite-sampling` is an investigation on the effect of averaging interval and sampling rate on hourly modeling errors.
 
 # Analysis
-SURFRAD data is required to run the analysis in the Jupyter notebooks in this repo. There is a separate Jupyter notebook for each of the seven sites.
+[SURFRAD data](https://pvlib-python.readthedocs.io/en/stable/reference/generated/pvlib.iotools.read_surfrad.html) is required to run the analysis in the Jupyter notebooks in this repo. There is a separate Jupyter notebook for each of the seven sites.
 
 # Preprint
 This repo contains the manuscript that was submitted as original research and published in JPV at IEEE Xplore.
