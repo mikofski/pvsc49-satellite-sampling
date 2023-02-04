@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.1.31)  31 JAN 2023 15:46
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.2.4)  4 FEB 2023 06:41
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -653,7 +653,7 @@ Package rerunfilecheck Info: File `satellite-sampling.out' has not changed.
  ) 
 Here is how much of TeX's memory you used:
  11658 strings out of 480171
- 181885 string characters out of 5894489
+ 181885 string characters out of 5894490
  498917 words of memory out of 5000000
  29366 multiletter control sequences out of 15000+600000
  589953 words of font info for 154 fonts, out of 8000000 for 9000
