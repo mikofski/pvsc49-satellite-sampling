@@ -8,7 +8,7 @@ The [analysis folder](https://github.com/mikofski/pvsc49-satellite-sampling/blob
 * [Fort Peck, MT](https://github.com/mikofski/pvsc49-satellite-sampling/blob/main/analysis/instantaneous_weather-SURFRAD-fpk.ipynb)
 * [Goodwin Creek, MS](https://github.com/mikofski/pvsc49-satellite-sampling/blob/main/analysis/instantaneous_weather-SURFRAD-gwn.ipynb)
 * [Penn State, PA](https://github.com/mikofski/pvsc49-satellite-sampling/blob/main/analysis/instantaneous_weather-SURFRAD-psu.ipynb)
-* [Sioux Falls, ID](https://github.com/mikofski/pvsc49-satellite-sampling/blob/main/analysis/instantaneous_weather-SURFRAD-sxf.ipynb)
+* [Sioux Falls, SD](https://github.com/mikofski/pvsc49-satellite-sampling/blob/main/analysis/instantaneous_weather-SURFRAD-sxf.ipynb)
 * [Table Mountain (Boulder), CO](https://github.com/mikofski/pvsc49-satellite-sampling/blob/main/analysis/instantaneous_weather-SURFRAD-tbl.ipynb)
 
 Each Jupyter notebook is a based on a template. Therefore, the organization of each is the same:
