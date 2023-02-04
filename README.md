@@ -35,7 +35,7 @@ Other [Python](https://www.python.org/) libraries used are [Matplotlib](https://
 This repo contains the manuscript that was submitted as original research and published in JPV at IEEE Xplore. LaTeX was used to render the manuscript. The coauthors collaborated online using [Overleaf](https://www.overleaf.com/), and I also used [Sublime Text](https://www.sublimetext.com/) with [LaTeXTools plugin](https://latextools.readthedocs.io/en/latest/) and [Sumatra](https://www.sumatrapdfreader.org/free-pdf-reader). A PDF is rendered and deployed to GitHub pages automatically on each commit using GitHub actions in the `workflows` folder. Note: this PDF is not the final version published by IEEE.
 
 # Licences & Copyrights
-* The LaTeX document in this repo is a preprint of **Effects of Solar Resource Sampling Rate and Averaging Interval on Hourly Modeling Errors** published in IEEE _Journal of Photovoltaics_, available from IEEE Xplore, DOI: [10.1109/JPHOTOV.2023.3238512](https:/doi.org/10.1109/JPHOTOV.2023.3238512).
+* The LaTeX document in this repo is a preprint of **Effects of Solar Resource Sampling Rate and Averaging Interval on Hourly Modeling Errors** published in IEEE _Journal of Photovoltaics_, available from IEEE Xplore, DOI: [10.1109/JPHOTOV.2023.3238512](https://doi.org/10.1109/JPHOTOV.2023.3238512).
 * The analysis code in this repo is [BSD-3 licensed](https://github.com/mikofski/pvsc49-satellite-sampling/blob/main/LICENSE).
 * This README and all other text are licensed under [Creative Common BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/).
 
