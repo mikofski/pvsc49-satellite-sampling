@@ -1,5 +1,5 @@
 # Intro
-`pvsc49-satellite-sampling` is an investigation on the effect of averaging interval and sampling rate on hourly modeling errors, presented in **Effects of Solar Resource Sampling Rate and Averaging Interval on Hourly Modeling Errors** published in IEEE _Journal of Photovoltaics_, available from IEEE Xplore, DOI: [10.1109/JPHOTOV.2023.3238512](https:/doi.org/10.1109/JPHOTOV.2023.3238512). This repository contains the analysis as well as the LaTeX files used to generate the preprint for submission.
+`pvsc49-satellite-sampling` is an investigation on the effect of averaging interval and sampling rate on hourly modeling errors, presented in **Effects of Solar Resource Sampling Rate and Averaging Interval on Hourly Modeling Errors** published in IEEE _Journal of Photovoltaics_, available from IEEE Xplore, DOI: [10.1109/JPHOTOV.2023.3238512](https://doi.org/10.1109/JPHOTOV.2023.3238512). This repository contains the analysis as well as the LaTeX files used to generate the preprint for submission.
 
 # Analysis
 The [analysis folder](https://github.com/mikofski/pvsc49-satellite-sampling/blob/main/analysis/) containes a separate [Jupyter notebook](https://jupyter.org/) for each of the seven SURFRAD sites:
