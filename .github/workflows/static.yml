@@ -31,6 +31,7 @@ jobs:
         pdflatex satellite-sampling.tex
         mkdir docs
         cp satellite-sampling.* docs/
+        echo "<script>window.location.replace(\"satellite-sampling.pdf\");</script>" > docs/index.html
 
     - name: GitHub Pages action
       uses: peaceiris/actions-gh-pages@v3.9.0
